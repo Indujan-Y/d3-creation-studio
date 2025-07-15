@@ -472,9 +472,10 @@
 .scrolling-carousels-wrapper {
     display: flex;
     flex-direction: column;
+    gap: 1.25rem; /* Corresponds to Tailwind's gap-5 */
     width: 100%;
     background: linear-gradient(to bottom, hsl(var(--background)), hsl(var(--card)));
-    padding: 20px 0;
+    padding: 2.5rem 0; /* Corresponds to py-10 */
 }
 
 .scrolling-carousel-container {

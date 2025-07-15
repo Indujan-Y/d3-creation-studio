@@ -38,7 +38,7 @@ export function ImageCarousel() {
                 </div>
             </div>
 
-            <div className={cn("scrolling-carousel-container", "mt-5")}>
+            <div className="scrolling-carousel-container">
                 <div className="scrolling-carousel-track right-to-left">
                      {extendedImages.map((image, i) => (
                         <div className="scrolling-carousel-item" key={`middle-${i}`}>
@@ -55,7 +55,7 @@ export function ImageCarousel() {
                 </div>
             </div>
 
-            <div className={cn("scrolling-carousel-container", "mt-5")}>
+            <div className="scrolling-carousel-container">
                 <div className="scrolling-carousel-track left-to-right-2">
                      {extendedImages.map((image, i) => (
                         <div className="scrolling-carousel-item" key={`bottom-${i}`}>
