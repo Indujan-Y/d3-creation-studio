@@ -18,7 +18,7 @@ export function HeroSection({ title, subtitle, imageUrl, aiHint }: HeroSectionPr
         priority
         data-ai-hint={aiHint}
       />
-      <div className="absolute inset-0 bg-black/50" />
+      <div className="absolute inset-0 bg-black/60" />
       <div className="relative z-10 p-4">
         <h1 className="text-4xl md:text-6xl font-bold font-headline text-shadow-lg animate-fade-in-down">{title}</h1>
         <p className="mt-4 text-lg md:text-xl max-w-2xl mx-auto font-body text-shadow animate-fade-in-up">{subtitle}</p>
