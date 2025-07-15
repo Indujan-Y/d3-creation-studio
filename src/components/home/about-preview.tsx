@@ -31,7 +31,7 @@ export function AboutPreview() {
         offset: ["start end", "end start"]
     });
 
-    const rawY = useTransform(scrollYProgress, [0, 1], [0, vh * 0.4]);
+    const rawY = useTransform(scrollYProgress, [0, 1], [0, vh * -0.4]);
     const ymove = useSpring(rawY, { stiffness: 100, damping: 30, restDelta: 0.001 });
 
     return (
