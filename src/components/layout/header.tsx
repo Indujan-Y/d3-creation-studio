@@ -12,10 +12,15 @@ export default function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [navOpen, setNavOpen] = useState(false);
   const pathname = usePathname();
+  
+  const isHomePage = pathname === '/';
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 10);
+      // Make header opaque immediately on scroll on non-home pages
+      // or after 10px on home page
+      const scrolled = window.scrollY > 10;
+      setIsScrolled(scrolled);
     };
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
@@ -38,14 +43,14 @@ export default function Header() {
     <header
       className={cn(
         'fixed top-0 left-0 right-0 z-50 transition-colors duration-300',
-        isScrolled || navOpen ? 'bg-card' : 'bg-transparent'
+        isScrolled || navOpen || !isHomePage ? 'bg-card/95 backdrop-blur-sm' : 'bg-transparent'
       )}
     >
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex h-20 items-center justify-between">
           <Link href="/" className="flex items-center gap-2 z-50">
             <Camera className="h-8 w-8 text-primary" />
-            <span className={cn("text-xl font-bold font-headline", navOpen ? 'text-primary' : 'text-foreground')}>Aperture Visions</span>
+            <span className={cn("text-xl font-bold font-headline", isScrolled || navOpen || !isHomePage ? 'text-primary' : 'text-foreground')}>Aperture Visions</span>
           </Link>
           
           <nav className="hidden md:flex items-center space-x-1">
@@ -61,20 +66,19 @@ export default function Header() {
             </Button>
           </nav>
 
-          {/* Mobile Menu Toggle */}
           <div className="md:hidden z-50">
             <button
               onClick={() => setNavOpen(!navOpen)}
-              className="w-8 h-8 flex flex-col justify-center items-center gap-[6px] relative"
+              className="w-8 h-8 flex flex-col justify-center items-center gap-1.5 relative"
               aria-label="Toggle menu"
             >
               <span className={cn(
-                "block w-full h-0.5 bg-foreground transition-transform duration-300 ease-in-out",
-                navOpen ? "rotate-45 translate-y-[5px]" : ""
+                "block w-6 h-0.5 bg-foreground transition-transform duration-300 ease-in-out",
+                navOpen ? "rotate-45 translate-y-[.4rem]" : ""
               )}></span>
               <span className={cn(
-                "block w-full h-0.5 bg-foreground transition-transform duration-300 ease-in-out",
-                 navOpen ? "-rotate-45 -translate-y-[2px]" : ""
+                "block w-6 h-0.5 bg-foreground transition-transform duration-300 ease-in-out",
+                 navOpen ? "-rotate-45" : ""
               )}></span>
             </button>
           </div>
@@ -84,8 +88,8 @@ export default function Header() {
       
        {/* Mobile Nav Overlay */}
         <div className={cn(
-            "fixed inset-0 bg-background w-full h-screen transition-transform duration-500 ease-in-out md:hidden",
-            navOpen ? "translate-y-0" : "-translate-y-full"
+            "fixed inset-0 bg-background w-full h-screen transition-all duration-500 ease-in-out md:hidden",
+            navOpen ? "opacity-100 visible" : "opacity-0 invisible"
         )}>
             <div className="container mx-auto px-4 sm:px-6 lg:px-8 flex flex-col justify-center h-full">
                 <ul className="flex flex-col items-center gap-2 text-center">
@@ -95,20 +99,21 @@ export default function Header() {
                             href={link.href}
                             onClick={closeMobileMenu}
                             className={cn(
-                                "inline-block text-3xl font-headline transition-transform duration-500",
-                                navOpen ? 'translate-y-0' : 'translate-y-full'
+                                "inline-block text-3xl font-headline transition-all duration-500",
+                                navOpen ? 'translate-y-0 opacity-100' : 'translate-y-full opacity-0'
                             )}
-                            style={{ transitionDelay: navOpen ? `${0.2 + index * 0.05}s` : '0s' }}
+                            style={{ transitionDelay: navOpen ? `${0.5 + index * 0.1}s` : '0s' }}
                         >
                             {link.label}
                         </Link>
+                         <div className="h-px w-0 bg-primary mx-auto group-hover:w-full transition-all duration-300"></div>
                     </li>
                     ))}
                 </ul>
                 <div className={cn(
                     "absolute bottom-8 left-0 right-0 px-4 text-center transition-opacity duration-500",
                      navOpen ? 'opacity-100' : 'opacity-0',
-                )} style={{ transitionDelay: navOpen ? '0.6s' : '0s' }}>
+                )} style={{ transitionDelay: navOpen ? '1s' : '0s' }}>
                     <p className="text-muted-foreground">Madurai, Tamil Nadu</p>
                     <div className="flex justify-center gap-4 mt-2">
                         <a href="#" className="hover:text-primary">YouTube</a>

@@ -9,7 +9,7 @@ interface HeroSectionProps {
 
 export function HeroSection({ title, subtitle, imageUrl, aiHint }: HeroSectionProps) {
   return (
-    <div className="relative h-[60vh] min-h-[400px] flex items-center justify-center text-center text-white">
+    <div className="relative h-[50vh] min-h-[350px] flex items-center justify-center text-center text-white">
       <Image
         src={imageUrl}
         alt={title}
