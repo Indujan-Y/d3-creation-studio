@@ -48,22 +48,33 @@ export function Testimonials() {
             {testimonials.map((testimonial, index) => (
               <CarouselItem key={index}>
                 <div className="p-1">
-                  <Card className="border-2 border-primary/20 shadow-lg">
-                    <CardContent className="flex flex-col items-center text-center p-8 md:p-12">
-                      <Quote className="h-10 w-10 text-accent mb-6" />
-                      <p className="text-lg md:text-xl font-body text-foreground mb-6">
-                        "{testimonial.quote}"
-                      </p>
-                      <div className="flex items-center gap-4">
-                        <Avatar>
-                          <AvatarImage src={testimonial.avatarUrl} alt={testimonial.name} data-ai-hint={testimonial.aiHint} />
-                          <AvatarFallback>{testimonial.name.charAt(0)}</AvatarFallback>
-                        </Avatar>
-                        <div>
-                           <p className="font-bold font-headline text-lg">{testimonial.name}</p>
+                  <Card className="border-2 border-primary/20 shadow-lg overflow-hidden">
+                    <div className="relative">
+                       <Image 
+                         src={testimonial.imageUrl}
+                         alt={`Testimonial from ${testimonial.name}`}
+                         width={800}
+                         height={400}
+                         className="w-full h-full object-cover"
+                         data-ai-hint="testimonial background"
+                       />
+                       <div className="absolute inset-0 bg-black/60" />
+                       <CardContent className="absolute inset-0 flex flex-col items-center text-center justify-center p-8 md:p-12 text-white">
+                        <Quote className="h-10 w-10 text-accent mb-6" />
+                        <p className="text-lg md:text-xl font-body mb-6">
+                          "{testimonial.quote}"
+                        </p>
+                        <div className="flex items-center gap-4">
+                          <Avatar>
+                            <AvatarImage src={testimonial.avatarUrl} alt={testimonial.name} data-ai-hint={testimonial.aiHint} />
+                            <AvatarFallback>{testimonial.name.charAt(0)}</AvatarFallback>
+                          </Avatar>
+                          <div>
+                             <p className="font-bold font-headline text-lg">{testimonial.name}</p>
+                          </div>
                         </div>
-                      </div>
-                    </CardContent>
+                      </CardContent>
+                    </div>
                   </Card>
                 </div>
               </CarouselItem>
