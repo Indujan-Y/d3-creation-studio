@@ -82,6 +82,12 @@ export default function SocialsPage() {
 
             <div className="py-16 lg:py-24 bg-background">
                 <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+                    <div className="text-center mb-16">
+                        <h2 className="text-3xl lg:text-4xl font-bold font-headline text-primary">Join Our Community</h2>
+                        <p className="mt-4 text-lg text-muted-foreground max-w-3xl mx-auto">
+                            We're active on several platforms where we share our latest projects, behind-the-scenes content, and photography tips. Follow us to stay updated and become part of the d3 creation studio family.
+                        </p>
+                    </div>
                     {/* Instagram Section */}
                     <motion.section
                         className="mb-20"

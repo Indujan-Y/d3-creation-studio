@@ -16,6 +16,12 @@ export default function AlbumsPage() {
 
       <div className="py-16 lg:py-24">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl lg:text-4xl font-bold font-headline text-primary">A Gallery of Stories</h2>
+            <p className="mt-4 text-lg text-muted-foreground max-w-3xl mx-auto">
+              Each album is a carefully curated collection of moments, emotions, and memories. We invite you to browse through our work and discover the diverse stories we've had the honor of telling. From intimate portraits to grand celebrations, find inspiration for your own story within these galleries.
+            </p>
+          </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {albums.map((album) => (
               <Card key={album.slug} className="overflow-hidden group hover:shadow-xl transition-shadow duration-300">
