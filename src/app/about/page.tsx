@@ -8,13 +8,24 @@ import { Card } from '@/components/ui/card';
 import { CheckCircle } from 'lucide-react';
 
 export default function AboutPage() {
-  const containerRef = useRef(null);
+  const scrollRef = useRef(null);
+  
   const { scrollYProgress } = useScroll({
-    target: containerRef,
+    target: scrollRef,
     offset: ["start end", "end start"]
   });
-  const y = useTransform(scrollYProgress, [0, 1], ['-10%', '10%']);
-  const smoothY = useSpring(y, { stiffness: 100, damping: 30, restDelta: 0.001 });
+
+  const storyTextY = useTransform(scrollYProgress, [0, 1], ['-5%', '5%']);
+  const storyImageY = useTransform(scrollYProgress, [0, 1], ['5%', '-5%']);
+  const valuesY = useTransform(scrollYProgress, [0.3, 0.6], ['10%', '-5%']);
+  const teamY = useTransform(scrollYProgress, [0.6, 1], ['10%', '-5%']);
+
+  const springConfig = { stiffness: 100, damping: 30, restDelta: 0.001 };
+  const smoothStoryTextY = useSpring(storyTextY, springConfig);
+  const smoothStoryImageY = useSpring(storyImageY, springConfig);
+  const smoothValuesY = useSpring(valuesY, springConfig);
+  const smoothTeamY = useSpring(teamY, springConfig);
+
 
   const teamMembers = [
     { name: 'Jane Doe', role: 'Lead Photographer', imageUrl: 'https://placehold.co/400x400.png', aiHint: 'woman portrait' },
@@ -31,7 +42,7 @@ export default function AboutPage() {
   ];
 
   return (
-    <>
+    <div ref={scrollRef}>
       <HeroSection
         title="About d3 creation studio"
         subtitle="Discover the passion, creativity, and dedication behind our lens."
@@ -39,13 +50,10 @@ export default function AboutPage() {
         aiHint="photography studio"
       />
 
-      <div ref={containerRef} className="py-16 lg:py-24 bg-background overflow-hidden">
+      <div className="py-16 lg:py-24 bg-background overflow-hidden">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div 
-            className="grid md:grid-cols-2 gap-16 items-center"
-            style={{ y: smoothY }}
-          >
-            <div>
+          <div className="grid md:grid-cols-2 gap-16 items-center">
+            <motion.div style={{ y: smoothStoryTextY }}>
               <h2 className="text-3xl lg:text-4xl font-bold font-headline text-primary mb-6">Our Story</h2>
               <p className="text-lg text-foreground mb-4">
                 Founded on a shared love for visual storytelling, d3 creation studio began as a dream between a few friends. We saw a world full of fleeting moments and felt a compelling need to capture their beauty and emotion for eternity.
@@ -53,8 +61,11 @@ export default function AboutPage() {
               <p className="text-muted-foreground">
                 Today, we are a full-fledged creative agency, but our core philosophy remains the same: to approach every project with the heart of an artist and the precision of a professional. We are more than just photographers and videographers; we are curators of memory, dedicated to preserving your most cherished moments in the most beautiful way possible.
               </p>
-            </div>
-            <div className="rounded-lg overflow-hidden shadow-xl">
+            </motion.div>
+            <motion.div 
+              className="rounded-lg overflow-hidden shadow-xl"
+              style={{ y: smoothStoryImageY }}
+            >
               <Image
                 src="https://placehold.co/600x700.png"
                 alt="d3 creation studio team"
@@ -63,17 +74,14 @@ export default function AboutPage() {
                 className="w-full h-auto object-cover"
                 data-ai-hint="creative team"
               />
-            </div>
-          </motion.div>
+            </motion.div>
+          </div>
         </div>
       </div>
 
       <motion.div 
         className="py-16 lg:py-24 bg-card"
-        initial={{ opacity: 0, y: 50 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, amount: 0.2 }}
-        transition={{ duration: 0.8 }}
+        style={{ y: smoothValuesY }}
       >
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-12">
@@ -95,10 +103,7 @@ export default function AboutPage() {
 
       <motion.div 
         className="py-16 lg:py-24 bg-background"
-        initial={{ opacity: 0, y: 50 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, amount: 0.2 }}
-        transition={{ duration: 0.8 }}
+        style={{ y: smoothTeamY }}
       >
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
@@ -127,6 +132,6 @@ export default function AboutPage() {
           </div>
         </div>
       </motion.div>
-    </>
+    </div>
   );
 }
