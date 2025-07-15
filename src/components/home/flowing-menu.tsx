@@ -23,14 +23,14 @@ export const FlowingMenu: React.FC<FlowingMenuProps> = () => {
   }));
 
   return (
-    <div className="w-full h-[80vh] overflow-hidden bg-black">
+    <div className="w-full min-h-screen bg-background">
       <div className="text-center pt-16 pb-12">
-          <h2 className="text-3xl lg:text-4xl font-bold font-headline text-primary-foreground">Our Services</h2>
+          <h2 className="text-3xl lg:text-4xl font-bold font-headline text-primary">Our Services</h2>
           <p className="mt-4 text-lg text-muted-foreground max-w-2xl mx-auto">
             Crafting visual excellence for every occasion.
           </p>
         </div>
-      <nav className="flex flex-col h-full m-0 p-0">
+      <nav className="flex flex-col h-[calc(100vh-200px)] m-0 p-0">
         {menuItems.map((item, idx) => (
           <MenuItem key={idx} {...item} />
         ))}
@@ -96,7 +96,7 @@ const MenuItem: React.FC<MenuItemProps> = ({ link, text, image }) => {
   const repeatedMarqueeContent = React.useMemo(() => {
     return Array.from({ length: 4 }).map((_, idx) => (
       <React.Fragment key={idx}>
-        <span className="text-[#060010] uppercase font-normal text-[4vh] leading-[1.2] p-[1vh_1vw_0]">
+        <span className="text-primary-foreground uppercase font-normal text-[4vh] leading-[1.2] p-[1vh_1vw_0]">
           {text}
         </span>
         <div
@@ -109,11 +109,11 @@ const MenuItem: React.FC<MenuItemProps> = ({ link, text, image }) => {
 
   return (
     <div
-      className="flex-1 relative overflow-hidden text-center shadow-[0_-1px_0_0_hsl(var(--primary))]"
+      className="flex-1 relative overflow-hidden text-center shadow-[0_-1px_0_0_hsl(var(--border))]"
       ref={itemRef}
     >
       <Link
-        className="flex items-center justify-center h-full relative cursor-pointer uppercase no-underline font-semibold text-white text-[4vh] hover:text-[#060010] focus:text-white focus-visible:text-[#060010]"
+        className="flex items-center justify-center h-full relative cursor-pointer uppercase no-underline font-semibold text-muted-foreground text-[4vh] hover:text-accent focus:text-accent focus-visible:text-accent"
         href={link}
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
@@ -121,7 +121,7 @@ const MenuItem: React.FC<MenuItemProps> = ({ link, text, image }) => {
         {text}
       </Link>
       <div
-        className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none bg-white translate-y-[101%]"
+        className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none bg-accent translate-y-[101%]"
         ref={marqueeRef}
       >
         <div className="h-full w-full flex" ref={marqueeInnerRef}>
