@@ -10,7 +10,7 @@ export default function Footer() {
         <div className="md:col-span-4">
           <Link href="/" className="flex items-center gap-2 mb-4">
             <Camera className="h-8 w-8 text-primary" />
-            <span className="text-xl font-bold font-headline">Aperture Visions</span>
+            <span className="text-xl font-bold font-headline">d3 creation studio</span>
           </Link>
           <p className="text-sm text-muted-foreground font-body">
             Capturing life's most precious moments with creativity and passion. Our team of photographers and videographers is dedicated to delivering stunning visual stories.
@@ -47,7 +47,7 @@ export default function Footer() {
         </div>
       </div>
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 mt-12 border-t pt-8 text-center text-sm text-muted-foreground font-body">
-        <p>&copy; {new Date().getFullYear()} Aperture Visions. All Rights Reserved.</p>
+        <p>&copy; {new Date().getFullYear()} d3 creation studio. All Rights Reserved.</p>
       </div>
     </footer>
   );

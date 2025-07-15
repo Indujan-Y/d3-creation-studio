@@ -5,8 +5,8 @@ import Footer from '@/components/layout/footer';
 import { Toaster } from '@/components/ui/toaster';
 
 export const metadata: Metadata = {
-  title: 'Aperture Visions',
-  description: 'A portfolio for a photography and videography agency.',
+  title: 'd3 creation studio',
+  description: 'd3 creation studio - A portfolio for a photography and videography agency.',
 };
 
 export default function RootLayout({

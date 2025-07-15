@@ -4,7 +4,7 @@ import { Mail, Phone, MapPin } from 'lucide-react';
 
 export default function ContactPage() {
   const contactDetails = [
-    { icon: Mail, title: 'Email Us', content: 'contact@aperturevisions.com', href: 'mailto:contact@aperturevisions.com' },
+    { icon: Mail, title: 'Email Us', content: 'contact@d3creationstudio.com', href: 'mailto:contact@d3creationstudio.com' },
     { icon: Phone, title: 'Call Us', content: '(555) 123-4567', href: 'tel:555-123-4567' },
     { icon: MapPin, title: 'Our Studio', content: '123 Visionary Lane, Creativity City, 10101', href: '#' },
   ];

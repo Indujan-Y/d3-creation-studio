@@ -50,7 +50,7 @@ export default function Header() {
         <div className="flex h-20 items-center justify-between">
           <Link href="/" className="flex items-center gap-2 z-50">
             <Camera className="h-8 w-8 text-primary" />
-            <span className={cn("text-xl font-bold font-headline", isScrolled || navOpen || !isHomePage ? 'text-primary' : 'text-foreground')}>Aperture Visions</span>
+            <span className={cn("text-xl font-bold font-headline", isScrolled || navOpen || !isHomePage ? 'text-primary' : 'text-foreground')}>d3 creation studio</span>
           </Link>
           
           <nav className="hidden md:flex items-center space-x-1">

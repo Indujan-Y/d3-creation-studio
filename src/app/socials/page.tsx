@@ -6,10 +6,10 @@ import Link from 'next/link';
 
 export default function SocialsPage() {
   const socialLinks = [
-    { name: 'Instagram', handle: '@ApertureVisions', url: '#', icon: Instagram, color: 'text-[#E1306C]' },
-    { name: 'Facebook', handle: 'fb.com/ApertureVisions', url: '#', icon: Facebook, color: 'text-[#1877F2]' },
-    { name: 'Twitter', handle: '@ApertureTweets', url: '#', icon: Twitter, color: 'text-[#1DA1F2]' },
-    { name: 'YouTube', handle: 'Aperture Visions Channel', url: '#', icon: Youtube, color: 'text-[#FF0000]' },
+    { name: 'Instagram', handle: '@d3creationstudio', url: '#', icon: Instagram, color: 'text-[#E1306C]' },
+    { name: 'Facebook', handle: 'fb.com/d3creationstudio', url: '#', icon: Facebook, color: 'text-[#1877F2]' },
+    { name: 'Twitter', handle: '@d3creationstudio', url: '#', icon: Twitter, color: 'text-[#1DA1F2]' },
+    { name: 'YouTube', handle: 'd3 creation studio Channel', url: '#', icon: Youtube, color: 'text-[#FF0000]' },
   ];
 
   return (

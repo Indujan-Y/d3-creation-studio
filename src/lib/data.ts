@@ -4,8 +4,6 @@ export const navLinks = [
   { href: '/albums', label: 'Albums' },
   { href: '/services', label: 'Services' },
   { href: '/socials', label: 'Socials' },
-  { href: '/ai-tools/alt-text-generator', label: 'AI Tool' },
-  { href: '/contact', label: 'Contact' },
 ];
 
 export const services = [
@@ -104,7 +102,7 @@ export const albums = [
 
 export const testimonials = [
   {
-    quote: "Aperture Visions exceeded all our expectations. The photos are absolutely stunning, and they managed to capture the essence of our wedding day perfectly. Highly recommended!",
+    quote: "d3 creation studio exceeded all our expectations. The photos are absolutely stunning, and they managed to capture the essence of our wedding day perfectly. Highly recommended!",
     name: 'Emily & John S.',
     avatarUrl: 'https://placehold.co/100x100.png',
     aiHint: 'happy couple'

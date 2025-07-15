@@ -88,7 +88,7 @@ export function HomeHero() {
       >
         <div className="logo-container">
           <div className="logo-placeholder">
-            <h1 className="font-headline">Aperture Visions</h1>
+            <h1 className="font-headline">d3 creation studio</h1>
           </div>
         </div>
 

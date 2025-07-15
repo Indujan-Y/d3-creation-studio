@@ -21,7 +21,7 @@ export default function AboutPage() {
   return (
     <>
       <HeroSection
-        title="About Aperture Visions"
+        title="About d3 creation studio"
         subtitle="Discover the passion, creativity, and dedication behind our lens."
         imageUrl="https://placehold.co/1920x1080.png"
         aiHint="photography studio"
@@ -33,7 +33,7 @@ export default function AboutPage() {
             <div>
               <h2 className="text-3xl lg:text-4xl font-bold font-headline text-primary mb-6">Our Story</h2>
               <p className="text-lg text-foreground mb-4">
-                Founded on a shared love for visual storytelling, Aperture Visions began as a dream between a few friends. We saw a world full of fleeting moments and felt a compelling need to capture their beauty and emotion for eternity.
+                Founded on a shared love for visual storytelling, d3 creation studio began as a dream between a few friends. We saw a world full of fleeting moments and felt a compelling need to capture their beauty and emotion for eternity.
               </p>
               <p className="text-muted-foreground">
                 Today, we are a full-fledged creative agency, but our core philosophy remains the same: to approach every project with the heart of an artist and the precision of a professional. We are more than just photographers and videographers; we are curators of memory, dedicated to preserving your most cherished moments in the most beautiful way possible.
@@ -42,7 +42,7 @@ export default function AboutPage() {
             <div className="rounded-lg overflow-hidden shadow-xl">
               <Image
                 src="https://placehold.co/600x700.png"
-                alt="Aperture Visions team"
+                alt="d3 creation studio team"
                 width={600}
                 height={700}
                 className="w-full h-auto object-cover"
