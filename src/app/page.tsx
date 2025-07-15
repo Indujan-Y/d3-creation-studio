@@ -1,7 +1,7 @@
 import { HomeHero } from "@/components/home/home-hero";
 import { AboutPreview } from "@/components/home/about-preview";
 import { FeaturedAlbums } from "@/components/home/featured-albums";
-import { FeaturedServices } from "@/components/home/featured-services";
+import { FlowingMenu } from "@/components/home/flowing-menu";
 import { Testimonials } from "@/components/home/testimonials";
 import { ImageCarousel } from "@/components/home/image-carousel";
 
@@ -11,7 +11,7 @@ export default function Home() {
       <HomeHero />
       <AboutPreview />
       <ImageCarousel />
-      <FeaturedServices />
+      <FlowingMenu />
       <FeaturedAlbums />
       <Testimonials />
     </>
