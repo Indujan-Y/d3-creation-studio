@@ -466,3 +466,110 @@
         height: 320px;
     }
 }
+
+
+/* Scrolling Image Carousel */
+.scrolling-carousels-wrapper {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    background: linear-gradient(to bottom, hsl(var(--background)), hsl(var(--card)));
+    padding: 20px 0;
+}
+
+.scrolling-carousel-container {
+    overflow: hidden;
+    width: 100%;
+    position: relative;
+    height: 30vh;
+    max-height: 250px;
+    min-height: 180px;
+    -webkit-mask-image: linear-gradient(to right, transparent, black 5%, black 95%, transparent);
+    mask-image: linear-gradient(to right, transparent, black 5%, black 95%, transparent);
+}
+
+.scrolling-carousel-track {
+    display: flex;
+    width: max-content;
+    align-items: center;
+    height: 100%;
+    will-change: transform;
+}
+
+.left-to-right-1 {
+    animation: scroll-left-1 50s linear infinite;
+}
+
+.right-to-left {
+    animation: scroll-right 45s linear infinite;
+}
+
+.left-to-right-2 {
+    animation: scroll-left-2 55s linear infinite;
+}
+
+.scrolling-carousel-item {
+    flex-shrink: 0;
+    height: 100%;
+    margin: 0 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.3s ease;
+}
+
+.scrolling-carousel-item:hover {
+    transform: scale(1.05);
+    z-index: 2;
+}
+
+.scrolling-carousel-item img {
+    height: 100%;
+    width: auto;
+    max-height: 100%;
+    border-radius: 12px;
+    object-fit: cover;
+    display: block;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+@keyframes scroll-left-1 {
+    0% {
+        transform: translateX(0%);
+    }
+
+    100% {
+        transform: translateX(-50%);
+    }
+}
+
+@keyframes scroll-right {
+    0% {
+        transform: translateX(-50%);
+    }
+
+    100% {
+        transform: translateX(0%);
+    }
+}
+
+@keyframes scroll-left-2 {
+    0% {
+        transform: translateX(0%);
+    }
+
+    100% {
+        transform: translateX(-50%);
+    }
+}
+
+@media (max-height: 600px) {
+    .scrolling-carousel-container {
+        margin-top: 10px !important;
+    }
+
+    .scrolling-carousels-wrapper {
+        padding-top: 10px;
+        padding-bottom: 10px;
+    }
+}

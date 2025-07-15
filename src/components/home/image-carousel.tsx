@@ -1,41 +1,76 @@
+"use client";
+
+import { useState, useEffect } from 'react';
 import Image from 'next/image';
-import {
-  Carousel,
-  CarouselContent,
-  CarouselItem,
-  CarouselNext,
-  CarouselPrevious,
-} from "@/components/ui/carousel";
 import { carouselImages } from '@/lib/data';
+import { cn } from '@/lib/utils';
 
 export function ImageCarousel() {
-  return (
-    <section className="py-16 lg:py-24 bg-card">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-12">
-          <h2 className="text-3xl lg:text-4xl font-bold font-headline text-primary">Our Gallery</h2>
-          <p className="mt-4 text-lg text-muted-foreground max-w-2xl mx-auto">
-            A curated collection of our favorite shots.
-          </p>
-        </div>
-        <Carousel className="w-full"
-            opts={{
-            align: "start",
-            loop: true,
-          }}>
-          <CarouselContent>
-            {carouselImages.map((image, index) => (
-              <CarouselItem key={index}>
-                <div className="aspect-video relative rounded-lg overflow-hidden">
-                  <Image src={image.src} alt={image.alt} fill className="object-cover" data-ai-hint={image.aiHint}/>
+    const [isMounted, setIsMounted] = useState(false);
+
+    useEffect(() => {
+        setIsMounted(true);
+    }, []);
+
+    if (!isMounted) {
+        return null;
+    }
+
+    // Duplicate images for a seamless loop
+    const extendedImages = [...carouselImages, ...carouselImages];
+
+    return (
+        <div className="scrolling-carousels-wrapper">
+            <div className="scrolling-carousel-container">
+                <div className="scrolling-carousel-track left-to-right-1">
+                    {extendedImages.map((image, i) => (
+                        <div className="scrolling-carousel-item" key={`top-${i}`}>
+                            <Image 
+                                src={image.src} 
+                                alt={image.alt} 
+                                width={500}
+                                height={300}
+                                className="object-cover"
+                                data-ai-hint={image.aiHint} 
+                            />
+                        </div>
+                    ))}
                 </div>
-              </CarouselItem>
-            ))}
-          </CarouselContent>
-          <CarouselPrevious className="absolute left-4 top-1/2 -translate-y-1/2" />
-          <CarouselNext className="absolute right-4 top-1/2 -translate-y-1/2" />
-        </Carousel>
-      </div>
-    </section>
-  );
+            </div>
+
+            <div className={cn("scrolling-carousel-container", "mt-5")}>
+                <div className="scrolling-carousel-track right-to-left">
+                     {extendedImages.map((image, i) => (
+                        <div className="scrolling-carousel-item" key={`middle-${i}`}>
+                            <Image 
+                                src={image.src} 
+                                alt={image.alt}
+                                width={500}
+                                height={300}
+                                className="object-cover"
+                                data-ai-hint={image.aiHint}
+                             />
+                        </div>
+                    ))}
+                </div>
+            </div>
+
+            <div className={cn("scrolling-carousel-container", "mt-5")}>
+                <div className="scrolling-carousel-track left-to-right-2">
+                     {extendedImages.map((image, i) => (
+                        <div className="scrolling-carousel-item" key={`bottom-${i}`}>
+                           <Image 
+                                src={image.src} 
+                                alt={image.alt}
+                                width={500}
+                                height={300}
+                                className="object-cover"
+                                data-ai-hint={image.aiHint}
+                            />
+                        </div>
+                    ))}
+                </div>
+            </div>
+        </div>
+    );
 }

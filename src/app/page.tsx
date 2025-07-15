@@ -10,10 +10,10 @@ export default function Home() {
     <>
       <HomeHero />
       <AboutPreview />
+      <ImageCarousel />
       <FeaturedServices />
       <FeaturedAlbums />
       <Testimonials />
-      <ImageCarousel />
     </>
   );
 }
