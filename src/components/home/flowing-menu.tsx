@@ -4,6 +4,8 @@ import React from "react";
 import Link from "next/link";
 import { gsap } from "gsap";
 import { services } from "@/lib/data";
+import { Button } from "@/components/ui/button";
+import { ArrowRight } from "lucide-react";
 
 interface MenuItemProps {
   link: string;
@@ -23,19 +25,26 @@ export const FlowingMenu: React.FC<FlowingMenuProps> = () => {
   }));
 
   return (
-    <div className="w-full min-h-screen bg-background">
+    <section className="w-full min-h-screen bg-background flex flex-col justify-center">
       <div className="text-center pt-16 pb-12">
           <h2 className="text-3xl lg:text-4xl font-bold font-headline text-primary">Our Services</h2>
           <p className="mt-4 text-lg text-muted-foreground max-w-2xl mx-auto">
             Crafting visual excellence for every occasion.
           </p>
         </div>
-      <nav className="flex flex-col h-[calc(100vh-200px)] m-0 p-0">
+      <nav className="flex flex-col h-[calc(100vh-300px)] m-0 p-0">
         {menuItems.map((item, idx) => (
           <MenuItem key={idx} {...item} />
         ))}
       </nav>
-    </div>
+      <div className="text-center py-12">
+          <Button asChild size="lg">
+            <Link href="/services">
+              View All Services <ArrowRight className="ml-2 h-5 w-5" />
+            </Link>
+          </Button>
+        </div>
+    </section>
   );
 };
 
