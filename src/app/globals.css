@@ -4,27 +4,30 @@
 
 @layer base {
   :root {
-    --background: 190 56% 92%;
-    --foreground: 204 10% 10%;
-    --card: 190 56% 95%;
-    --card-foreground: 204 10% 10%;
-    --popover: 190 56% 95%;
-    --popover-foreground: 204 10% 10%;
-    --primary: 195 79% 35%;
+    --background: 220 13% 98%;
+    --foreground: 224 71% 4%;
+    --card: 220 13% 96%;
+    --card-foreground: 224 71% 4%;
+    --popover: 220 13% 98%;
+    --popover-foreground: 224 71% 4%;
+    --primary: 262 84% 58%;
     --primary-foreground: 0 0% 100%;
-    --secondary: 190 20% 85%;
-    --secondary-foreground: 204 10% 10%;
-    --muted: 190 15% 88%;
-    --muted-foreground: 204 10% 40%;
-    --accent: 28 78% 56%;
+    --secondary: 215 28% 17%;
+    --secondary-foreground: 0 0% 98%;
+    --muted: 216 12% 84%;
+    --muted-foreground: 215 28% 45%;
+    --accent: 262 84% 58%;
     --accent-foreground: 0 0% 100%;
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 0 0% 98%;
-    --border: 190 20% 80%;
-    --input: 190 20% 80%;
-    --ring: 195 79% 35%;
+    --border: 216 12% 84%;
+    --input: 216 12% 84%;
+    --ring: 262 84% 58%;
+    --shadow-primary: rgba(0, 0, 0, 0.05);
+    --shadow-secondary: rgba(0, 0, 0, 0.1);
+    --shadow-enhanced: rgba(0, 0, 0, 0.15);
 
-    /* New color variables for hero section */
+    /* New color variables for enhanced design */
     --violet-500: #8b5cf6;
     --violet-600: #7c3aed;
     --purple-600: #9333ea;
@@ -43,25 +46,25 @@
   }
  
   .dark {
-    --background: 204 10% 10%;
-    --foreground: 190 20% 95%;
-    --card: 204 10% 12%;
-    --card-foreground: 190 20% 95%;
-    --popover: 204 10% 10%;
-    --popover-foreground: 190 20% 95%;
-    --primary: 195 79% 45%;
+    --background: 224 71% 4%;
+    --foreground: 210 40% 98%;
+    --card: 224 71% 6%;
+    --card-foreground: 210 40% 98%;
+    --popover: 224 71% 4%;
+    --popover-foreground: 210 40% 98%;
+    --primary: 262 84% 58%;
     --primary-foreground: 0 0% 100%;
-    --secondary: 204 10% 15%;
-    --secondary-foreground: 190 20% 95%;
-    --muted: 204 10% 15%;
-    --muted-foreground: 190 20% 60%;
-    --accent: 28 78% 60%;
+    --secondary: 215 28% 17%;
+    --secondary-foreground: 210 40% 98%;
+    --muted: 215 28% 17%;
+    --muted-foreground: 215 20% 65%;
+    --accent: 262 84% 58%;
     --accent-foreground: 0 0% 100%;
     --destructive: 0 62.8% 30.6%;
     --destructive-foreground: 0 0% 98%;
-    --border: 204 10% 20%;
-    --input: 204 10% 20%;
-    --ring: 195 79% 45%;
+    --border: 215 28% 17%;
+    --input: 215 28% 17%;
+    --ring: 262 84% 58%;
   }
 }
 
@@ -897,4 +900,3 @@
     .album-card { border: 2px solid var(--text-primary); }
     .albums-badge { border: 1px solid var(--text-primary); }
 }
-

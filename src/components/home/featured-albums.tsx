@@ -194,17 +194,6 @@ export function FeaturedAlbums() {
                     viewport={{ once: true }}
                     transition={{ duration: 0.8 }}
                 >
-                    <motion.div
-                        className="albums-badge"
-                        initial={{ opacity: 0, scale: 0.8 }}
-                        whileInView={{ opacity: 1, scale: 1 }}
-                        viewport={{ once: true }}
-                        transition={{ delay: 0.2 }}
-                    >
-                        <Camera className="badge-icon" />
-                        <span className="badge-text">Our Portfolio</span>
-                    </motion.div>
-
                     <motion.h2
                         className="albums-title"
                         initial={{ opacity: 0, y: 30 }}
