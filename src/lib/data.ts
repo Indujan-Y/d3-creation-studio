@@ -130,3 +130,8 @@ export const carouselImages = [
   { src: 'https://placehold.co/1200x600.png', alt: 'A creative portrait.', aiHint: 'creative portrait' },
   { src: 'https://placehold.co/1200x600.png', alt: 'A vibrant city-scape.', aiHint: 'city night' },
 ];
+
+export const aboutPreviewBg = {
+  url: 'https://placehold.co/1920x1080.png',
+  aiHint: 'photographer camera',
+};
