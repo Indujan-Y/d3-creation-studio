@@ -1,9 +1,21 @@
+"use client";
+
+import { useRef } from 'react';
 import Image from 'next/image';
+import { motion, useScroll, useTransform, useSpring } from 'framer-motion';
 import { HeroSection } from '@/components/shared/hero-section';
 import { Card } from '@/components/ui/card';
 import { CheckCircle } from 'lucide-react';
 
 export default function AboutPage() {
+  const containerRef = useRef(null);
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start end", "end start"]
+  });
+  const y = useTransform(scrollYProgress, [0, 1], ['-10%', '10%']);
+  const smoothY = useSpring(y, { stiffness: 100, damping: 30, restDelta: 0.001 });
+
   const teamMembers = [
     { name: 'Jane Doe', role: 'Lead Photographer', imageUrl: 'https://placehold.co/400x400.png', aiHint: 'woman portrait' },
     { name: 'John Smith', role: 'Lead Videographer', imageUrl: 'https://placehold.co/400x400.png', aiHint: 'man portrait' },
@@ -27,9 +39,12 @@ export default function AboutPage() {
         aiHint="photography studio"
       />
 
-      <div className="py-16 lg:py-24 bg-background">
+      <div ref={containerRef} className="py-16 lg:py-24 bg-background overflow-hidden">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid md:grid-cols-2 gap-16 items-center">
+          <motion.div 
+            className="grid md:grid-cols-2 gap-16 items-center"
+            style={{ y: smoothY }}
+          >
             <div>
               <h2 className="text-3xl lg:text-4xl font-bold font-headline text-primary mb-6">Our Story</h2>
               <p className="text-lg text-foreground mb-4">
@@ -49,11 +64,17 @@ export default function AboutPage() {
                 data-ai-hint="creative team"
               />
             </div>
-          </div>
+          </motion.div>
         </div>
       </div>
 
-      <div className="py-16 lg:py-24 bg-card">
+      <motion.div 
+        className="py-16 lg:py-24 bg-card"
+        initial={{ opacity: 0, y: 50 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, amount: 0.2 }}
+        transition={{ duration: 0.8 }}
+      >
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-12">
                 <h2 className="text-3xl lg:text-4xl font-bold font-headline text-primary">Our Values</h2>
@@ -70,9 +91,15 @@ export default function AboutPage() {
                 ))}
             </div>
         </div>
-      </div>
+      </motion.div>
 
-      <div className="py-16 lg:py-24 bg-background">
+      <motion.div 
+        className="py-16 lg:py-24 bg-background"
+        initial={{ opacity: 0, y: 50 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, amount: 0.2 }}
+        transition={{ duration: 0.8 }}
+      >
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <h2 className="text-3xl lg:text-4xl font-bold font-headline text-primary">Meet the Team</h2>
@@ -99,7 +126,7 @@ export default function AboutPage() {
             ))}
           </div>
         </div>
-      </div>
+      </motion.div>
     </>
   );
 }
