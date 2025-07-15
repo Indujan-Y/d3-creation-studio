@@ -35,7 +35,14 @@ export function AboutPreview() {
     const ymove = useSpring(rawY, { stiffness: 100, damping: 30, restDelta: 0.001 });
 
     return (
-        <div className="home-about-container" ref={homeAboutContainerRef}>
+        <motion.div 
+            className="home-about-container" 
+            ref={homeAboutContainerRef}
+            initial={{ opacity: 0, y: 50 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.2 }}
+            transition={{ duration: 0.8 }}
+        >
             <div className="about-img-div">
               <Image
                 src={aboutPreviewBg.url}
@@ -73,6 +80,6 @@ export function AboutPreview() {
                     </Button>
                 </div>
             </motion.div>
-        </div>
+        </motion.div>
     )
 }

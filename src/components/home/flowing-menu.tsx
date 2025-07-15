@@ -6,6 +6,7 @@ import { gsap } from "gsap";
 import { services } from "@/lib/data";
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
+import { motion } from 'framer-motion';
 
 interface MenuItemProps {
   link: string;
@@ -24,27 +25,52 @@ export const FlowingMenu: React.FC<FlowingMenuProps> = () => {
     image: service.imageUrl
   }));
 
+  const sectionVariants = {
+      hidden: { opacity: 0 },
+      visible: { 
+          opacity: 1,
+          transition: { duration: 1, ease: "easeOut", staggerChildren: 0.2 }
+      }
+  };
+
+  const itemVariants = {
+      hidden: { opacity: 0, y: 20 },
+      visible: { opacity: 1, y: 0 }
+  };
+
   return (
-    <section className="w-full min-h-screen bg-background flex flex-col justify-center">
-      <div className="text-center pt-16 pb-12">
+    <motion.section 
+      className="w-full min-h-screen bg-background flex flex-col justify-center"
+      variants={sectionVariants}
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true, amount: 0.1 }}
+    >
+      <motion.div 
+        className="text-center pt-16 pb-12"
+        variants={itemVariants}
+      >
           <h2 className="text-3xl lg:text-4xl font-bold font-headline text-primary">Our Services</h2>
           <p className="mt-4 text-lg text-muted-foreground max-w-2xl mx-auto">
             Crafting visual excellence for every occasion.
           </p>
-        </div>
+        </motion.div>
       <nav className="flex flex-col h-[calc(100vh-300px)] m-0 p-0">
         {menuItems.map((item, idx) => (
           <MenuItem key={idx} {...item} />
         ))}
       </nav>
-      <div className="text-center py-12">
+      <motion.div 
+        className="text-center py-12"
+        variants={itemVariants}
+      >
           <Button asChild size="lg">
             <Link href="/services">
               View All Services <ArrowRight className="ml-2 h-5 w-5" />
             </Link>
           </Button>
-        </div>
-    </section>
+        </motion.div>
+    </motion.section>
   );
 };
 

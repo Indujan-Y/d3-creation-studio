@@ -65,7 +65,7 @@ export function HomeHero() {
           style={img.style}
           initial={{ opacity: 0, scale: 0.8 }}
           animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 1, delay: 0.2 * (index + 1) }}
+          transition={{ duration: 1, delay: 0.1 * (index + 1) }}
         >
           <motion.div style={img.style}>
             <Image
@@ -96,7 +96,7 @@ export function HomeHero() {
           className="hero-text"
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1, delay: 1.5 }}
+          transition={{ duration: 1, delay: 1 }}
         >
           <h2 className="font-headline">Crafting Timeless Visual Stories</h2>
           <p className="font-body">Professional Photography & Videography</p>
@@ -107,7 +107,7 @@ export function HomeHero() {
         className={cn("scroll-indicator", isScrolled && "opacity-0 pointer-events-none")}
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        transition={{ duration: 1, delay: 2 }}
+        transition={{ duration: 1, delay: 1.5 }}
       >
         <div className="scroll-arrow"></div>
       </motion.div>
