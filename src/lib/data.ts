@@ -174,14 +174,3 @@ export const aboutPreviewBg = {
   url: 'https://placehold.co/1920x1080.png',
   aiHint: 'photographer camera',
 };
-
-export const masonryGalleryImages = [
-    { src: 'https://placehold.co/500x700.png', aiHint: 'tall portrait' },
-    { src: 'https://placehold.co/500x400.png', aiHint: 'landscape photo' },
-    { src: 'https://placehold.co/500x800.png', aiHint: 'very tall' },
-    { src: 'https://placehold.co/500x500.png', aiHint: 'square image' },
-    { src: 'https://placehold.co/500x300.png', aiHint: 'wide shot' },
-    { src: 'https://placehold.co/500x600.png', aiHint: 'portrait orientation' },
-    { src: 'https://placehold.co/500x450.png', aiHint: 'landscape orientation' },
-    { src: 'https://placehold.co/500x750.png', aiHint: 'another tall' },
-];
