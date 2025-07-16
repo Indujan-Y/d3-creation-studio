@@ -25,8 +25,15 @@ interface FloatingIcon {
 export function SiteBackground() {
   const [particles, setParticles] = useState<Particle[]>([]);
   const [floatingIcons, setFloatingIcons] = useState<FloatingIcon[]>([]);
+  const [isMounted, setIsMounted] = useState(false);
 
   useEffect(() => {
+    setIsMounted(true);
+  }, []);
+
+  useEffect(() => {
+    if (!isMounted) return;
+
     const generateParticles = () => {
       const newParticles: Particle[] = Array.from({ length: 30 }).map((_, i) => ({
         id: i,
@@ -61,7 +68,7 @@ export function SiteBackground() {
 
     generateParticles();
     generateIcons();
-  }, []);
+  }, [isMounted]);
 
 
   return (
