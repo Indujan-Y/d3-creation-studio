@@ -4,6 +4,7 @@ import { useRef, useState, useEffect } from 'react';
 import { motion, useScroll, useTransform, useSpring } from 'framer-motion';
 import Image from 'next/image';
 import { cn } from '@/lib/utils';
+import { SiteBackground } from '../layout/site-background';
 
 export function HomeHero() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -58,6 +59,7 @@ export function HomeHero() {
 
   return (
     <div ref={containerRef} className="home-hero-section">
+      <SiteBackground />
       {images.map((img, index) => (
         <motion.div
           key={index}
