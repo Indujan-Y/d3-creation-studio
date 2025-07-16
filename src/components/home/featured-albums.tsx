@@ -1,42 +1,22 @@
 "use client";
 
-import React, { useState, useEffect, useRef } from 'react';
-import { motion, useScroll, useTransform, useSpring } from 'framer-motion';
-import { Eye, Camera, Calendar, ArrowRight, Aperture, Focus, Image as ImageIcon } from 'lucide-react';
+import React, { useRef } from 'react';
+import { motion } from 'framer-motion';
+import { Eye, Camera, Calendar, ArrowRight } from 'lucide-react';
 import Link from 'next/link';
 import { albums } from '@/lib/data';
 
 export function FeaturedAlbums() {
     const containerRef = useRef(null);
-    const { scrollYProgress } = useScroll({
-        target: containerRef,
-        offset: ["start end", "end start"]
-    });
 
-    // Parallax transforms
-    const contentY = useTransform(scrollYProgress, [0, 1], ['-10%', '10%']);
-    const opacity = useTransform(scrollYProgress, [0, 0.2, 0.8, 1], [0.3, 1, 1, 0.3]);
-
-    // Smooth spring animations for mouse tracking
-    const springConfig = { damping: 30, stiffness: 100 };
-    const mouseX = useSpring(0, springConfig);
-    const mouseY = useSpring(0, springConfig);
-
-    useEffect(() => {
-        const handleMouseMove = (e: MouseEvent) => {
-            if (!containerRef.current) return;
-            const rect = (containerRef.current as HTMLElement).getBoundingClientRect();
-            if (rect) {
-                const x = (e.clientX - rect.left - rect.width / 2) / rect.width;
-                const y = (e.clientY - rect.top - rect.height / 2) / rect.height;
-                mouseX.set(x * 30);
-                mouseY.set(y * 30);
-            }
-        };
-
-        window.addEventListener('mousemove', handleMouseMove);
-        return () => window.removeEventListener('mousemove', handleMouseMove);
-    }, [mouseX, mouseY]);
+    const sectionVariants = {
+        hidden: { opacity: 0, y: 50 },
+        visible: {
+            opacity: 1,
+            y: 0,
+            transition: { duration: 0.8, ease: "easeOut" }
+        }
+    };
 
     const containerVariants = {
         hidden: { opacity: 0 },
@@ -69,47 +49,35 @@ export function FeaturedAlbums() {
     };
 
     return (
-        <div
+        <motion.div
             ref={containerRef}
             className="relative py-16 lg:py-24"
+            variants={sectionVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.2 }}
         >
-            <motion.div
-                style={{ y: contentY, opacity }}
+            <div
                 className="albums-content"
             >
-                <motion.div
+                <div
                     className="albums-header"
-                    initial={{ opacity: 0, y: 50 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.8 }}
                 >
-                    <motion.h2
+                    <h2
                         className="albums-title"
-                        initial={{ opacity: 0, y: 30 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ delay: 0.3 }}
                     >
                         Featured <span className="title-gradient">Albums</span>
-                    </motion.h2>
+                    </h2>
 
-                    <motion.p
+                    <p
                         className="albums-description"
-                        initial={{ opacity: 0, y: 20 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ delay: 0.4 }}
                     >
                         Explore our curated collection of photography albums, each telling a unique story through carefully crafted visuals
-                    </motion.p>
-                </motion.div>
+                    </p>
+                </div>
                 <motion.div
                     className="albums-grid"
                     variants={containerVariants}
-                    initial="hidden"
-                    whileInView="visible"
-                    viewport={{ once: true, margin: "-100px" }}
                 >
                     {albums.slice(0, 6).map((album) => (
                         <motion.div
@@ -178,12 +146,8 @@ export function FeaturedAlbums() {
                     ))}
                 </motion.div>
 
-                <motion.div
-                    className="view-more-container"
-                    initial={{ opacity: 0, y: 30 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: 0.5 }}
+                <div
+                    className="view-more-container mt-16"
                 >
                     <Link href="/albums">
                         <motion.button
@@ -204,8 +168,8 @@ export function FeaturedAlbums() {
                             </motion.div>
                         </motion.button>
                     </Link>
-                </motion.div>
-            </motion.div>
-        </div>
+                </div>
+            </div>
+        </motion.div>
     );
 };
