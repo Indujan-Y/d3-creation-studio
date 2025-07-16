@@ -10,21 +10,28 @@ export function FeaturedAlbums() {
     const containerRef = useRef(null);
 
     const sectionVariants = {
-        hidden: { opacity: 0, y: 50 },
+        hidden: { opacity: 0 },
+        visible: {
+            opacity: 1,
+            transition: { duration: 0.5, staggerChildren: 0.2 }
+        }
+    };
+
+    const headerVariants = {
+        hidden: { opacity: 0, y: 30 },
         visible: {
             opacity: 1,
             y: 0,
             transition: { duration: 0.8, ease: "easeOut" }
         }
-    };
+    }
 
-    const containerVariants = {
+    const gridVariants = {
         hidden: { opacity: 0 },
         visible: {
             opacity: 1,
             transition: {
                 staggerChildren: 0.15,
-                delayChildren: 0.2
             }
         }
     };
@@ -32,18 +39,16 @@ export function FeaturedAlbums() {
     const itemVariants = {
         hidden: {
             opacity: 0,
-            y: 60,
-            scale: 0.8,
-            rotateX: -15
+            y: 50,
+            scale: 0.9
         },
         visible: {
             opacity: 1,
             y: 0,
             scale: 1,
-            rotateX: 0,
             transition: {
-                duration: 0.8,
-                ease: [0.25, 0.46, 0.45, 0.94]
+                duration: 0.6,
+                ease: "easeOut"
             }
         }
     };
@@ -60,8 +65,9 @@ export function FeaturedAlbums() {
             <div
                 className="albums-content"
             >
-                <div
+                <motion.div
                     className="albums-header"
+                    variants={headerVariants}
                 >
                     <h2
                         className="albums-title"
@@ -74,10 +80,10 @@ export function FeaturedAlbums() {
                     >
                         Explore our curated collection of photography albums, each telling a unique story through carefully crafted visuals
                     </p>
-                </div>
+                </motion.div>
                 <motion.div
                     className="albums-grid"
-                    variants={containerVariants}
+                    variants={gridVariants}
                 >
                     {albums.slice(0, 6).map((album) => (
                         <motion.div
@@ -146,8 +152,12 @@ export function FeaturedAlbums() {
                     ))}
                 </motion.div>
 
-                <div
+                <motion.div
                     className="view-more-container mt-16"
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true, amount: 0.5 }}
+                    transition={{ duration: 0.6, delay: 0.4 }}
                 >
                     <Link href="/albums">
                         <motion.button
@@ -168,7 +178,7 @@ export function FeaturedAlbums() {
                             </motion.div>
                         </motion.button>
                     </Link>
-                </div>
+                </motion.div>
             </div>
         </motion.div>
     );
