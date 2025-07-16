@@ -334,8 +334,8 @@
     height: 100%;
     background: linear-gradient(135deg,
             rgba(0, 0, 0, 0.9) 0%,
-            rgba(0, 0, 0, 0.7) 50%,
-            rgba(0, 0, 0, 0.6) 100%);
+            rgba(0, 0, 0, 0.8) 50%,
+            rgba(0, 0, 0, 0.7) 100%);
     z-index: 2;
 }
 
@@ -671,7 +671,7 @@
     z-index: 10;
     max-width: 80rem;
     margin: 0 auto;
-    padding: 0 1rem 5rem;
+    padding: 4rem 1rem 5rem;
 }
 .albums-header {
     text-align: center;
@@ -964,4 +964,36 @@
     width: 40rem;
     height: 40rem;
     background: linear-gradient(135deg, rgba(59, 130, 246, 1), rgba(8, 145, 178, 1));
+}
+
+.background-particle {
+    position: absolute;
+    border-radius: 50%;
+    opacity: 0.3;
+    animation: float 20s infinite linear;
+    background-color: hsl(var(--foreground));
+}
+
+.background-icon {
+    position: absolute;
+    color: hsl(var(--foreground));
+    opacity: 0.1;
+    animation: float 30s infinite linear;
+}
+
+@keyframes float {
+    0% {
+        transform: translateY(100vh) scale(0);
+        opacity: 0.1;
+    }
+    1% {
+        transform: translateY(99vh) scale(1);
+    }
+    99% {
+        opacity: 0.3;
+    }
+    100% {
+        transform: translateY(-10vh) scale(1.2);
+        opacity: 0;
+    }
 }
