@@ -14,9 +14,7 @@ export function FeaturedAlbums() {
     });
 
     // Parallax transforms
-    const backgroundY = useTransform(scrollYProgress, [0, 1], ['0%', '100%']);
-    const particlesY = useTransform(scrollYProgress, [0, 1], ['0%', '50%']);
-    const contentY = useTransform(scrollYProgress, [0, 1], ['0%', '25%']);
+    const contentY = useTransform(scrollYProgress, [0, 1], ['-10%', '10%']);
     const opacity = useTransform(scrollYProgress, [0, 0.2, 0.8, 1], [0.3, 1, 1, 0.3]);
 
     // Smooth spring animations for mouse tracking
@@ -31,32 +29,14 @@ export function FeaturedAlbums() {
             if (rect) {
                 const x = (e.clientX - rect.left - rect.width / 2) / rect.width;
                 const y = (e.clientY - rect.top - rect.height / 2) / rect.height;
-                mouseX.set(x * 50);
-                mouseY.set(y * 50);
+                mouseX.set(x * 30);
+                mouseY.set(y * 30);
             }
         };
 
         window.addEventListener('mousemove', handleMouseMove);
         return () => window.removeEventListener('mousemove', handleMouseMove);
     }, [mouseX, mouseY]);
-
-    // Particle system
-    const particles = React.useMemo(() => Array.from({ length: 30 }, (_, i) => ({
-        id: i,
-        x: Math.random() * 100,
-        y: Math.random() * 100,
-        size: Math.random() * 3 + 1,
-        speed: Math.random() * 0.5 + 0.2,
-        opacity: Math.random() * 0.5 + 0.3,
-        delay: Math.random() * 5
-    })), []);
-
-    const floatingIcons = [
-        { icon: Camera, x: 10, y: 20, size: 24 },
-        { icon: Aperture, x: 85, y: 15, size: 20 },
-        { icon: Focus, x: 15, y: 75, size: 18 },
-        { icon: ImageIcon, x: 90, y: 80, size: 22 }
-    ];
 
     const containerVariants = {
         hidden: { opacity: 0 },
@@ -91,100 +71,10 @@ export function FeaturedAlbums() {
     return (
         <div
             ref={containerRef}
-            className="albums-container"
+            className="relative py-16 lg:py-24"
         >
             <motion.div
-                style={{ y: backgroundY }}
-                className="background-grid"
-            />
-            <motion.div style={{ y: particlesY }} className="particles-container">
-                {particles.map((particle) => (
-                    <motion.div
-                        key={particle.id}
-                        className="particle"
-                        style={{
-                            left: `${particle.x}%`,
-                            top: `${particle.y}%`,
-                            width: `${particle.size}px`,
-                            height: `${particle.size}px`,
-                            opacity: particle.opacity
-                        }}
-                        animate={{
-                            y: [0, -100, 0],
-                            opacity: [particle.opacity, particle.opacity * 0.3, particle.opacity],
-                            scale: [1, 1.5, 1]
-                        }}
-                        transition={{
-                            duration: 8 + particle.speed * 4,
-                            repeat: Infinity,
-                            delay: particle.delay,
-                            ease: "easeInOut"
-                        }}
-                    />
-                ))}
-            </motion.div>
-            <div className="floating-icons-container">
-                {floatingIcons.map((item, index) => {
-                    const Icon = item.icon;
-                    return (
-                        <motion.div
-                            key={index}
-                            className="floating-icon"
-                            style={{
-                                left: `${item.x}%`,
-                                top: `${item.y}%`,
-                                x: mouseX,
-                                y: mouseY
-                            }}
-                            animate={{
-                                y: [0, -20, 0],
-                                rotate: [0, 5, 0],
-                                opacity: [0.3, 0.6, 0.3]
-                            }}
-                            transition={{
-                                duration: 4 + index,
-                                repeat: Infinity,
-                                delay: index * 0.5,
-                                ease: "easeInOut"
-                            }}
-                        >
-                            <Icon size={item.size} />
-                        </motion.div>
-                    );
-                })}
-            </div>
-            <motion.div
-                style={{ y: contentY }}
-                className="gradient-orbs"
-            >
-                <motion.div
-                    className="gradient-orb gradient-orb-1"
-                    animate={{
-                        scale: [1, 1.2, 1],
-                        opacity: [0.3, 0.5, 0.3]
-                    }}
-                    transition={{
-                        duration: 6,
-                        repeat: Infinity,
-                        ease: "easeInOut"
-                    }}
-                />
-                <motion.div
-                    className="gradient-orb gradient-orb-2"
-                    animate={{
-                        scale: [1, 1.1, 1],
-                        opacity: [0.4, 0.6, 0.4]
-                    }}
-                    transition={{
-                        duration: 8,
-                        repeat: Infinity,
-                        ease: "easeInOut",
-                        delay: 2
-                    }}
-                />
-            </motion.div>
-            <motion.div
-                style={{ opacity }}
+                style={{ y: contentY, opacity }}
                 className="albums-content"
             >
                 <motion.div

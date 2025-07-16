@@ -3,6 +3,7 @@ import './globals.css';
 import Header from '@/components/layout/header';
 import Footer from '@/components/layout/footer';
 import { Toaster } from '@/components/ui/toaster';
+import { SiteBackground } from '@/components/layout/site-background';
 
 export const metadata: Metadata = {
   title: 'd3 creation studio',
@@ -22,8 +23,9 @@ export default function RootLayout({
         <link href="https://fonts.googleapis.com/css2?family=Alegreya:ital,wght@0,400..900;1,400..900&family=Belleza&display=swap" rel="stylesheet" />
       </head>
       <body className="font-body antialiased bg-background">
+        <SiteBackground />
         <Header />
-        <main>{children}</main>
+        <main className="relative z-10">{children}</main>
         <Footer />
         <Toaster />
       </body>
