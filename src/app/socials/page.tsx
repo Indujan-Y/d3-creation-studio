@@ -82,7 +82,7 @@ export default function SocialsPage() {
 
             <div className="py-16 lg:py-24 bg-background">
                 <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-                    <div className="text-center mb-16">
+                    <div className="text-center mb-12 md:mb-16">
                         <h2 className="text-3xl lg:text-4xl font-bold font-headline text-primary">Join Our Community</h2>
                         <p className="mt-4 text-lg text-muted-foreground max-w-3xl mx-auto">
                             We're active on several platforms where we share our latest projects, behind-the-scenes content, and photography tips. Follow us to stay updated and become part of the d3 creation studio family.
@@ -96,7 +96,7 @@ export default function SocialsPage() {
                         whileInView="visible"
                         viewport={{ once: true, amount: 0.2 }}
                     >
-                        <div className="flex justify-between items-center mb-8">
+                        <div className="flex flex-col sm:flex-row justify-between items-center mb-8 gap-4">
                             <div className='flex items-center gap-4'>
                                 <Instagram className="h-10 w-10 text-[#E1306C]" />
                                 <div>
@@ -124,7 +124,7 @@ export default function SocialsPage() {
                         </motion.div>
                         <h3 className="text-2xl font-bold font-headline text-primary mb-4">Reels</h3>
                         <motion.div
-                            className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4"
+                            className="grid grid-cols-2 xs:grid-cols-3 sm:grid-cols-4 lg:grid-cols-5 gap-4"
                             variants={{ visible: { transition: { staggerChildren: 0.1 } } }}
                         >
                             {instagramMedia.reels.map(reel => (
@@ -147,7 +147,7 @@ export default function SocialsPage() {
                         whileInView="visible"
                         viewport={{ once: true, amount: 0.2 }}
                     >
-                        <div className="flex justify-between items-center mb-8">
+                        <div className="flex flex-col sm:flex-row justify-between items-center mb-8 gap-4">
                             <div className='flex items-center gap-4'>
                                 <Youtube className="h-10 w-10 text-[#FF0000]" />
                                 <div>
@@ -176,7 +176,7 @@ export default function SocialsPage() {
                         </motion.div>
                         <h3 className="text-2xl font-bold font-headline text-primary mb-4">Shorts</h3>
                         <motion.div
-                            className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4"
+                            className="grid grid-cols-2 xs:grid-cols-3 sm:grid-cols-4 lg:grid-cols-5 gap-4"
                              variants={{ visible: { transition: { staggerChildren: 0.1 } } }}
                         >
                             {youtubeMedia.shorts.map(short => (

@@ -74,7 +74,7 @@ export default function AboutPage() {
 
       <div className="py-16 lg:py-24 bg-background overflow-hidden">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid md:grid-cols-2 gap-16 items-center">
+          <div className="grid md:grid-cols-2 gap-8 md:gap-16 items-center">
             <motion.div 
               style={{ y: smoothStoryTextY }}
               initial={{ opacity: 0, x: -50 }}
@@ -127,7 +127,7 @@ export default function AboutPage() {
                 </p>
             </div>
             <motion.div 
-              className="max-w-4xl mx-auto grid sm:grid-cols-2 lg:grid-cols-3 gap-8"
+              className="max-w-4xl mx-auto grid sm:grid-cols-2 lg:grid-cols-3 gap-y-8 gap-x-4"
               variants={listContainerVariants}
               initial="hidden"
               whileInView="visible"
@@ -136,7 +136,7 @@ export default function AboutPage() {
                 {values.map((value, index) => (
                     <motion.div key={index} className="flex items-center gap-4" variants={listItemVariants}>
                         <CheckCircle className="h-8 w-8 text-accent flex-shrink-0" />
-                        <span className="text-lg font-semibold">{value}</span>
+                        <span className="text-lg font-semibold text-left">{value}</span>
                     </motion.div>
                 ))}
             </motion.div>

@@ -17,8 +17,6 @@ export default function Header() {
 
   useEffect(() => {
     const handleScroll = () => {
-      // Make header opaque immediately on scroll on non-home pages
-      // or after 10px on home page
       const scrolled = window.scrollY > 10;
       setIsScrolled(scrolled);
     };
@@ -73,11 +71,11 @@ export default function Header() {
               aria-label="Toggle menu"
             >
               <span className={cn(
-                "block w-6 h-0.5 bg-foreground transition-transform duration-300 ease-in-out",
+                "block w-6 h-0.5 bg-primary transition-transform duration-300 ease-in-out",
                 navOpen ? "rotate-45 translate-y-[.4rem]" : ""
               )}></span>
               <span className={cn(
-                "block w-6 h-0.5 bg-foreground transition-transform duration-300 ease-in-out",
+                "block w-6 h-0.5 bg-primary transition-transform duration-300 ease-in-out",
                  navOpen ? "-rotate-45" : ""
               )}></span>
             </button>
@@ -92,23 +90,37 @@ export default function Header() {
             navOpen ? "opacity-100 visible" : "opacity-0 invisible"
         )}>
             <div className="container mx-auto px-4 sm:px-6 lg:px-8 flex flex-col justify-center h-full">
-                <ul className="flex flex-col items-center gap-2 text-center">
+                <ul className="flex flex-col items-center gap-4 text-center">
                     {navLinks.map((link, index) => (
                     <li key={link.href} className="overflow-hidden">
                         <Link
                             href={link.href}
                             onClick={closeMobileMenu}
                             className={cn(
-                                "inline-block text-3xl font-headline transition-all duration-500",
+                                "inline-block text-4xl font-headline transition-all duration-500 hover:text-accent",
+                                pathname === link.href && 'text-accent',
                                 navOpen ? 'translate-y-0 opacity-100' : 'translate-y-full opacity-0'
                             )}
                             style={{ transitionDelay: navOpen ? `${0.5 + index * 0.1}s` : '0s' }}
                         >
                             {link.label}
                         </Link>
-                         <div className="h-px w-0 bg-primary mx-auto group-hover:w-full transition-all duration-300"></div>
                     </li>
                     ))}
+                    <li className='overflow-hidden pt-4'>
+                       <Link
+                            href="/contact"
+                            onClick={closeMobileMenu}
+                            className={cn(
+                                "inline-block text-4xl font-headline transition-all duration-500 hover:text-accent",
+                                pathname === '/contact' && 'text-accent',
+                                navOpen ? 'translate-y-0 opacity-100' : 'translate-y-full opacity-0'
+                            )}
+                            style={{ transitionDelay: navOpen ? `${0.5 + navLinks.length * 0.1}s` : '0s' }}
+                        >
+                            Contact
+                        </Link>
+                    </li>
                 </ul>
                 <div className={cn(
                     "absolute bottom-8 left-0 right-0 px-4 text-center transition-opacity duration-500",
@@ -116,8 +128,8 @@ export default function Header() {
                 )} style={{ transitionDelay: navOpen ? '1s' : '0s' }}>
                     <p className="text-muted-foreground">Madurai, Tamil Nadu</p>
                     <div className="flex justify-center gap-4 mt-2">
-                        <a href="#" className="hover:text-primary">YouTube</a>
-                        <a href="#" className="hover:text-primary">Instagram</a>
+                        <a href="https://www.youtube.com/@d3creation966" target="_blank" rel="noopener noreferrer" className="hover:text-primary">YouTube</a>
+                        <a href="https://www.instagram.com/d3_creation_studio/" target="_blank" rel="noopener noreferrer" className="hover:text-primary">Instagram</a>
                     </div>
                 </div>
             </div>

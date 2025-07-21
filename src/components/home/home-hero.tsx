@@ -8,14 +8,23 @@ import { SiteBackground } from '../layout/site-background';
 
 export function HomeHero() {
   const [isScrolled, setIsScrolled] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
+    const checkMobile = () => setIsMobile(window.innerWidth < 768);
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+
     const handleScroll = () => {
       const scrollThreshold = window.innerHeight * 0.1;
       setIsScrolled(window.scrollY > scrollThreshold);
     };
     window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+
+    return () => {
+      window.removeEventListener('resize', checkMobile);
+      window.removeEventListener('scroll', handleScroll);
+    };
   }, []);
 
   const containerRef = useRef(null);
@@ -60,7 +69,7 @@ export function HomeHero() {
   return (
     <div ref={containerRef} className="home-hero-section">
       <SiteBackground />
-      {images.map((img, index) => (
+      {!isMobile && images.map((img, index) => (
         <motion.div
           key={index}
           className={`floating-image ${img.className}`}

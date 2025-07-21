@@ -14,7 +14,7 @@ export default function Footer() {
   return (
     <footer className="bg-card text-card-foreground pt-12 pb-8">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 grid md:grid-cols-12 gap-12">
-        <div className="md:col-span-4">
+        <div className="md:col-span-12 lg:col-span-4">
           <Link href="/" className="flex items-center gap-2 mb-4">
             <Camera className="h-8 w-8 text-primary" />
             <span className="text-xl font-bold font-headline">d3 creation studio</span>
@@ -26,7 +26,7 @@ export default function Footer() {
             <Link href="#" className="text-muted-foreground hover:text-primary transition-colors">
               <Facebook className="h-6 w-6" />
             </Link>
-            <Link href="#" className="text-muted-foreground hover:text-primary transition-colors">
+            <Link href="https://www.instagram.com/d3_creation_studio/" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-primary transition-colors">
               <Instagram className="h-6 w-6" />
             </Link>
              <Link href="https://wa.me/917708548764" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-primary transition-colors">
@@ -35,7 +35,7 @@ export default function Footer() {
           </div>
         </div>
         
-        <div className="md:col-span-2">
+        <div className="md:col-span-6 lg:col-span-2">
           <h3 className="font-headline text-lg font-semibold mb-4">Explore</h3>
           <ul className="space-y-2 font-body">
             {navLinks.map((link) => (
@@ -53,7 +53,7 @@ export default function Footer() {
           </ul>
         </div>
 
-        <div className="md:col-span-6">
+        <div className="md:col-span-6 lg:col-span-6">
            <h3 className="font-headline text-lg font-semibold mb-4">Get in Touch</h3>
            <ContactForm />
         </div>
