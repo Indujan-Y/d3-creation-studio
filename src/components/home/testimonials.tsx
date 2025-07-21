@@ -21,7 +21,7 @@ export function Testimonials() {
 
   return (
     <motion.section 
-      className="py-16 lg:py-24 bg-background"
+      className="py-16 lg:py-24"
       initial={{ opacity: 0, y: 50 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, amount: 0.2 }}
