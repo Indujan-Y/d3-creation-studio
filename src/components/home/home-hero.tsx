@@ -67,7 +67,7 @@ export function HomeHero() {
   ];
 
   return (
-    <div ref={containerRef} className="home-hero-section">
+    <div ref={containerRef} className="home-hero-section overflow-hidden">
       <SiteBackground />
       {!isMobile && images.map((img, index) => (
         <motion.div
@@ -99,7 +99,7 @@ export function HomeHero() {
       >
         <div className="logo-container">
           <div className="logo-placeholder">
-            <h1 className="font-headline">d3 creation studio</h1>
+            <h1 className="font-headline text-2xl sm:text-3xl md:text-4xl">d3 creation studio</h1>
           </div>
         </div>
 
@@ -109,8 +109,8 @@ export function HomeHero() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, delay: 1 }}
         >
-          <h2 className="font-headline">Crafting Timeless Visual Stories</h2>
-          <p className="font-body">Professional Photography & Videography</p>
+          <h2 className="font-headline text-lg sm:text-xl md:text-2xl">Crafting Timeless Visual Stories</h2>
+          <p className="font-body text-base sm:text-lg">Professional Photography & Videography</p>
         </motion.div>
       </motion.div>
 
