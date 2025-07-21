@@ -6,8 +6,6 @@ import {
   Carousel,
   CarouselContent,
   CarouselItem,
-  CarouselNext,
-  CarouselPrevious,
 } from "@/components/ui/carousel";
 import { Card, CardContent } from '@/components/ui/card';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
@@ -23,7 +21,7 @@ export function Testimonials() {
 
   return (
     <motion.section 
-      className="py-16 lg:py-24"
+      className="py-16 lg:py-24 bg-background"
       initial={{ opacity: 0, y: 50 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, amount: 0.2 }}
@@ -55,13 +53,13 @@ export function Testimonials() {
                          alt={`Testimonial from ${testimonial.name}`}
                          width={800}
                          height={400}
-                         className="w-full h-full object-cover"
+                         className="w-full h-48 sm:h-64 object-cover"
                          data-ai-hint="testimonial background"
                        />
                        <div className="absolute inset-0 bg-black/60" />
-                       <CardContent className="absolute inset-0 flex flex-col items-center text-center justify-center p-8 md:p-12 text-white">
-                        <Quote className="h-10 w-10 text-accent mb-6" />
-                        <p className="text-lg md:text-xl font-body mb-6">
+                       <CardContent className="absolute inset-0 flex flex-col items-center text-center justify-center p-6 sm:p-8 md:p-12 text-white">
+                        <Quote className="h-8 w-8 sm:h-10 sm:w-10 text-accent mb-4 sm:mb-6" />
+                        <p className="text-base sm:text-lg md:text-xl font-body mb-6">
                           "{testimonial.quote}"
                         </p>
                         <div className="flex items-center gap-4">
@@ -80,8 +78,6 @@ export function Testimonials() {
               </CarouselItem>
             ))}
           </CarouselContent>
-          <CarouselPrevious />
-          <CarouselNext />
         </Carousel>
       </div>
     </motion.section>
