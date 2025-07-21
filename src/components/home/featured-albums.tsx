@@ -22,7 +22,7 @@ export function FeaturedAlbums() {
         visible: {
             opacity: 1,
             y: 0,
-            transition: { duration: 0.8, ease: "easeOut" }
+            transition: { duration: 0.8, ease: [0.25, 1, 0.5, 1] }
         }
     }
 
@@ -31,7 +31,7 @@ export function FeaturedAlbums() {
         visible: {
             opacity: 1,
             transition: {
-                staggerChildren: 0.15,
+                staggerChildren: 0.1,
             }
         }
     };
@@ -40,15 +40,15 @@ export function FeaturedAlbums() {
         hidden: {
             opacity: 0,
             y: 50,
-            scale: 0.9
+            scale: 0.95
         },
         visible: {
             opacity: 1,
             y: 0,
             scale: 1,
             transition: {
-                duration: 0.6,
-                ease: "easeOut"
+                duration: 0.7,
+                ease: [0.25, 1, 0.5, 1]
             }
         }
     };
@@ -91,9 +91,8 @@ export function FeaturedAlbums() {
                             variants={itemVariants}
                             className="album-card"
                             whileHover={{
-                                y: -10,
-                                scale: 1.02,
-                                transition: { duration: 0.3 }
+                                y: -8,
+                                transition: { duration: 0.3, ease: "easeOut" }
                             }}
                         >
                           <Link href={`/albums/${album.slug}`}>
@@ -102,26 +101,26 @@ export function FeaturedAlbums() {
                                     src={album.coverUrl}
                                     alt={album.title}
                                     className="album-image"
-                                    whileHover={{ scale: 1.1 }}
-                                    transition={{ duration: 0.7 }}
+                                    whileHover={{ scale: 1.05 }}
+                                    transition={{ duration: 0.5, ease: "easeOut" }}
                                     data-ai-hint={album.aiHint}
                                 />
                                 <motion.div
                                     className={`album-overlay ${album.gradient}`}
                                     initial={{ opacity: 0 }}
                                     whileHover={{ opacity: 0.6 }}
-                                    transition={{ duration: 0.3 }}
+                                    transition={{ duration: 0.4, ease: "easeOut" }}
                                 />
                                 <motion.div
                                     className="album-hover-content"
                                     initial={{ opacity: 0, scale: 0.8 }}
                                     whileHover={{ opacity: 1, scale: 1 }}
-                                    transition={{ duration: 0.3 }}
+                                    transition={{ duration: 0.4, ease: "easeOut" }}
                                 >
                                     <div className="hover-content-inner">
                                         <motion.div
                                             whileHover={{ scale: 1.1 }}
-                                            transition={{ duration: 0.2 }}
+                                            transition={{ duration: 0.2, ease: "easeOut" }}
                                         >
                                             <Eye className="hover-icon" />
                                             <p className="hover-text">View Album</p>
@@ -157,14 +156,14 @@ export function FeaturedAlbums() {
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true, amount: 0.5 }}
-                    transition={{ duration: 0.6, delay: 0.4 }}
+                    transition={{ duration: 0.6, delay: 0.4, ease: "easeOut" }}
                 >
                     <Link href="/albums">
                         <motion.button
                             className="view-more-btn"
                             whileHover={{
                                 scale: 1.05,
-                                transition: { duration: 0.2 }
+                                transition: { duration: 0.2, ease: "easeOut" }
                             }}
                             whileTap={{ scale: 0.95 }}
                         >

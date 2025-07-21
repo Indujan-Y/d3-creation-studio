@@ -40,21 +40,22 @@ export default function Header() {
   return (
     <header
       className={cn(
-        'fixed top-0 left-0 right-0 z-50 transition-colors duration-300',
-        isScrolled || navOpen || !isHomePage ? 'bg-card/95 backdrop-blur-sm' : 'bg-transparent'
+        'fixed top-0 left-0 right-0 z-50 transition-all duration-300',
+        isScrolled || navOpen || !isHomePage ? 'bg-card/95 backdrop-blur-sm shadow-md' : 'bg-transparent'
       )}
     >
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex h-20 items-center justify-between">
           <Link href="/" className="flex items-center gap-2 z-50">
             <Camera className="h-8 w-8 text-primary" />
-            <span className={cn("text-xl font-bold font-headline", isScrolled || navOpen || !isHomePage ? 'text-primary' : 'text-foreground')}>d3 creation studio</span>
+            <span className={cn("text-xl font-bold font-headline transition-colors", isScrolled || navOpen || !isHomePage ? 'text-primary' : 'text-foreground')}>d3 creation studio</span>
           </Link>
           
           <nav className="hidden md:flex items-center space-x-1">
             {navLinks.map((link) => (
               <Button key={link.href} variant="ghost" asChild className={cn(
-                pathname === link.href && 'bg-primary/10 text-primary'
+                "transition-colors",
+                pathname === link.href ? 'bg-primary/10 text-primary' : 'hover:bg-primary/5'
               )}>
                 <Link href={link.href} className="font-body">{link.label}</Link>
               </Button>
@@ -101,7 +102,7 @@ export default function Header() {
                                 pathname === link.href && 'text-accent',
                                 navOpen ? 'translate-y-0 opacity-100' : 'translate-y-full opacity-0'
                             )}
-                            style={{ transitionDelay: navOpen ? `${0.5 + index * 0.1}s` : '0s' }}
+                            style={{ transitionDelay: navOpen ? `${0.4 + index * 0.08}s` : '0s' }}
                         >
                             {link.label}
                         </Link>
@@ -116,7 +117,7 @@ export default function Header() {
                                 pathname === '/contact' && 'text-accent',
                                 navOpen ? 'translate-y-0 opacity-100' : 'translate-y-full opacity-0'
                             )}
-                            style={{ transitionDelay: navOpen ? `${0.5 + navLinks.length * 0.1}s` : '0s' }}
+                            style={{ transitionDelay: navOpen ? `${0.4 + navLinks.length * 0.08}s` : '0s' }}
                         >
                             Contact
                         </Link>

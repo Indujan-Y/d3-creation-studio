@@ -44,7 +44,7 @@ export function HomeHero() {
   const logoY = useTransform(scrollYProgress, [0, 1], [0, 500]);
   const logoScale = useTransform(scrollYProgress, [0, 0.3], [1, 1.1]);
 
-  const springSettings = { stiffness: 100, damping: 30, restDelta: 0.001 };
+  const springSettings = { stiffness: 80, damping: 25, restDelta: 0.001 };
   const springY1 = useSpring(y1, springSettings);
   const springY2 = useSpring(y2, springSettings);
   const springY3 = useSpring(y3, springSettings);
@@ -53,7 +53,7 @@ export function HomeHero() {
   const springY6 = useSpring(y6, springSettings);
   const springY7 = useSpring(y7, springSettings);
   const springY8 = useSpring(y8, springSettings);
-  const springLogoY = useSpring(logoY, { ...springSettings, stiffness: 150, damping: 50 });
+  const springLogoY = useSpring(logoY, { ...springSettings, stiffness: 100, damping: 30 });
 
   const images = [
     { style: { y: springY1 }, className: "floating-1", src: "https://placehold.co/200x280.png", alt: "Photography 1", aiHint: "camera lens" },
@@ -76,7 +76,7 @@ export function HomeHero() {
           style={img.style}
           initial={{ opacity: 0, scale: 0.8 }}
           animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 1, delay: 0.1 * (index + 1) }}
+          transition={{ duration: 1, delay: 0.1 * (index + 1), ease: "easeOut" }}
         >
           <motion.div style={img.style}>
             <Image
@@ -95,7 +95,7 @@ export function HomeHero() {
         style={{ scale: logoScale, y: springLogoY }}
         initial={{ opacity: 0, y: 50 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 1.5, delay: 0.5 }}
+        transition={{ duration: 1.2, delay: 0.5, ease: [0.25, 1, 0.5, 1] }}
       >
         <div className="logo-container">
           <div className="logo-placeholder">
@@ -107,7 +107,7 @@ export function HomeHero() {
           className="hero-text"
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1, delay: 1 }}
+          transition={{ duration: 1, delay: 1, ease: "easeOut" }}
         >
           <h2 className="font-headline text-lg sm:text-xl md:text-2xl">Crafting Timeless Visual Stories</h2>
           <p className="font-body text-base sm:text-lg">Professional Photography & Videography</p>

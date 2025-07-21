@@ -80,7 +80,7 @@ const MenuItem: React.FC<MenuItemProps> = ({ link, text, image }) => {
   const marqueeRef = React.useRef<HTMLDivElement>(null);
   const marqueeInnerRef = React.useRef<HTMLDivElement>(null);
 
-  const animationDefaults = { duration: 0.6, ease: "expo" };
+  const animationDefaults = { duration: 0.7, ease: "power4.out" };
 
   const findClosestEdge = (
     mouseX: number,
@@ -105,8 +105,8 @@ const MenuItem: React.FC<MenuItemProps> = ({ link, text, image }) => {
       rect.height
     );
 
-    const tl = gsap.timeline({ defaults: animationDefaults });
-    tl.set(marqueeRef.current, { y: edge === "top" ? "-101%" : "101%" })
+    gsap.timeline({ defaults: animationDefaults })
+      .set(marqueeRef.current, { y: edge === "top" ? "-101%" : "101%" })
       .set(marqueeInnerRef.current, { y: edge === "top" ? "101%" : "-101%" })
       .to([marqueeRef.current, marqueeInnerRef.current], { y: "0%" });
   };
@@ -122,11 +122,9 @@ const MenuItem: React.FC<MenuItemProps> = ({ link, text, image }) => {
       rect.height
     );
 
-    const tl = gsap.timeline({ defaults: animationDefaults });
-    tl.to(marqueeRef.current, { y: edge === "top" ? "-101%" : "101%" }).to(
-      marqueeInnerRef.current,
-      { y: edge === "top" ? "101%" : "-101%" }
-    );
+    gsap.timeline({ defaults: animationDefaults })
+      .to(marqueeRef.current, { y: edge === "top" ? "-101%" : "101%" })
+      .to(marqueeInnerRef.current, { y: edge === "top" ? "101%" : "-101%" }, 0);
   };
 
   const repeatedMarqueeContent = React.useMemo(() => {
@@ -149,7 +147,7 @@ const MenuItem: React.FC<MenuItemProps> = ({ link, text, image }) => {
       ref={itemRef}
     >
       <Link
-        className="flex items-center justify-center h-full relative cursor-pointer uppercase no-underline font-semibold text-muted-foreground text-[4vh] hover:text-accent focus:text-accent focus-visible:text-accent"
+        className="flex items-center justify-center h-full relative cursor-pointer uppercase no-underline font-semibold text-muted-foreground text-[4vh] hover:text-accent focus:text-accent focus-visible:text-accent transition-colors duration-300"
         href={link}
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}

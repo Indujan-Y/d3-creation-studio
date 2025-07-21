@@ -21,7 +21,7 @@ export default function AboutPage() {
   const valuesY = useTransform(scrollYProgress, [0.3, 0.6], ['10%', '-5%']);
   const teamY = useTransform(scrollYProgress, [0.6, 1], ['10%', '-5%']);
 
-  const springConfig = { stiffness: 100, damping: 30, restDelta: 0.001 };
+  const springConfig = { stiffness: 80, damping: 25, restDelta: 0.001 };
   const smoothStoryTextY = useSpring(storyTextY, springConfig);
   const smoothStoryImageY = useSpring(storyImageY, springConfig);
   const smoothValuesY = useSpring(valuesY, springConfig);
@@ -46,7 +46,7 @@ export default function AboutPage() {
     visible: {
       opacity: 1,
       y: 0,
-      transition: { duration: 0.6, ease: "easeOut" }
+      transition: { duration: 0.8, ease: "easeOut" }
     }
   };
 
@@ -54,13 +54,13 @@ export default function AboutPage() {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
-      transition: { staggerChildren: 0.1, delayChildren: 0.2 }
+      transition: { staggerChildren: 0.15, delayChildren: 0.2 }
     }
   };
 
   const listItemVariants = {
     hidden: { opacity: 0, x: -20 },
-    visible: { opacity: 1, x: 0 }
+    visible: { opacity: 1, x: 0, transition: { ease: 'easeOut' } }
   };
 
   return (
@@ -80,7 +80,7 @@ export default function AboutPage() {
               initial={{ opacity: 0, x: -50 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true, amount: 0.3 }}
-              transition={{ duration: 0.8 }}
+              transition={{ duration: 0.8, ease: "easeOut" }}
             >
               <h2 className="text-3xl lg:text-4xl font-bold font-headline text-primary mb-6">Our Story</h2>
               <p className="text-lg text-foreground mb-4">
@@ -96,7 +96,7 @@ export default function AboutPage() {
               initial={{ opacity: 0, x: 50 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true, amount: 0.3 }}
-              transition={{ duration: 0.8 }}
+              transition={{ duration: 0.8, ease: "easeOut" }}
             >
               <Image
                 src="https://placehold.co/600x700.png"

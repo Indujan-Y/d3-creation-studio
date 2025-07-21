@@ -32,7 +32,7 @@ export function AboutPreview() {
     });
 
     const rawY = useTransform(scrollYProgress, [0, 1], [vh * 0.4, vh * -0.4]);
-    const ymove = useSpring(rawY, { stiffness: 100, damping: 30, restDelta: 0.001 });
+    const ymove = useSpring(rawY, { stiffness: 80, damping: 25, restDelta: 0.001 });
 
     return (
         <motion.div 
@@ -41,7 +41,7 @@ export function AboutPreview() {
             initial={{ opacity: 0, y: 50 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.2 }}
-            transition={{ duration: 0.8 }}
+            transition={{ duration: 0.8, ease: "easeOut" }}
         >
             <div className="about-img-div">
               <Image
@@ -59,7 +59,7 @@ export function AboutPreview() {
                       alt="Owner Portrait"
                       width={400}
                       height={500}
-                      className="object-cover rounded-lg shadow-2xl transition-transform duration-300 ease-in-out hover:-translate-y-2 hover:shadow-2xl"
+                      className="object-cover rounded-lg shadow-2xl transition-transform duration-500 ease-in-out hover:-translate-y-2 hover:shadow-2xl"
                       data-ai-hint="photographer portrait"
                     />
                 </div>
