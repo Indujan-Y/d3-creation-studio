@@ -1,3 +1,4 @@
+
 "use client";
 
 import React from "react";
@@ -40,7 +41,7 @@ export const FlowingMenu: React.FC<FlowingMenuProps> = () => {
 
   return (
     <motion.section 
-      className="w-full min-h-screen bg-background flex flex-col justify-center"
+      className="w-full min-h-screen bg-background flex flex-col justify-center overflow-hidden"
       variants={sectionVariants}
       initial="hidden"
       whileInView="visible"
