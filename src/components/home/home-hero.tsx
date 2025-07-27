@@ -1,3 +1,4 @@
+
 "use client";
 
 import { useRef, useState, useEffect } from 'react';
@@ -5,10 +6,36 @@ import { motion, useScroll, useTransform, useSpring } from 'framer-motion';
 import Image from 'next/image';
 import { cn } from '@/lib/utils';
 import { SiteBackground } from '../layout/site-background';
+import { getDatabase, ref, onValue } from 'firebase/database';
+import { app } from '@/lib/firebase';
+
+interface HeroImage {
+    id: string;
+    url: string;
+}
 
 export function HomeHero() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
+  const [heroImages, setHeroImages] = useState<HeroImage[]>([]);
+
+  useEffect(() => {
+    const db = getDatabase(app);
+    const heroRef = ref(db, 'hero');
+    
+    const unsubscribe = onValue(heroRef, (snapshot) => {
+        if (snapshot.exists()) {
+            const data = snapshot.val();
+            const imageList = Object.keys(data).map(key => ({
+                id: key,
+                url: data[key].url
+            }));
+            setHeroImages(imageList);
+        }
+    });
+
+    return () => unsubscribe();
+  }, []);
 
   useEffect(() => {
     const checkMobile = () => setIsMobile(window.innerWidth < 768);
@@ -56,39 +83,47 @@ export function HomeHero() {
   const springLogoY = useSpring(logoY, { ...springSettings, stiffness: 100, damping: 30 });
 
   const images = [
-    { style: { y: springY1 }, className: "floating-1", src: "https://placehold.co/200x280.png", alt: "Photography 1", aiHint: "camera lens" },
-    { style: { y: springY2 }, className: "floating-2", src: "https://placehold.co/180x240.png", alt: "Videography 1", aiHint: "video camera" },
-    { style: { y: springY3 }, className: "floating-3", src: "https://placehold.co/160x200.png", alt: "Camera Equipment", aiHint: "camera equipment" },
-    { style: { y: springY4 }, className: "floating-4", src: "https://placehold.co/220x260.png", alt: "Studio Setup", aiHint: "photo studio" },
-    { style: { y: springY5 }, className: "floating-5", src: "https://placehold.co/190x240.png", alt: "Photography Session", aiHint: "portrait session" },
-    { style: { y: springY6 }, className: "floating-6", src: "https://placehold.co/200x250.png", alt: "Video Production", aiHint: "video production" },
-    { style: { y: springY7 }, className: "floating-7", src: "https://placehold.co/140x180.png", alt: "Lighting Equipment", aiHint: "studio lighting" },
-    { style: { y: springY8 }, className: "floating-8", src: "https://placehold.co/210x260.png", alt: "Creative Portrait", aiHint: "creative portrait" },
+    { style: { y: springY1 }, className: "floating-1", width: 200, height: 280, alt: "Photography 1", aiHint: "camera lens" },
+    { style: { y: springY2 }, className: "floating-2", width: 180, height: 240, alt: "Videography 1", aiHint: "video camera" },
+    { style: { y: springY3 }, className: "floating-3", width: 160, height: 200, alt: "Camera Equipment", aiHint: "camera equipment" },
+    { style: { y: springY4 }, className: "floating-4", width: 220, height: 260, alt: "Studio Setup", aiHint: "photo studio" },
+    { style: { y: springY5 }, className: "floating-5", width: 190, height: 240, alt: "Photography Session", aiHint: "portrait session" },
+    { style: { y: springY6 }, className: "floating-6", width: 200, height: 250, alt: "Video Production", aiHint: "video production" },
+    { style: { y: springY7 }, className: "floating-7", width: 140, height: 180, alt: "Lighting Equipment", aiHint: "studio lighting" },
+    { style: { y: springY8 }, className: "floating-8", width: 210, height: 260, alt: "Creative Portrait", aiHint: "creative portrait" },
   ];
+
+  const imageElements = images.map((img, index) => {
+    const heroImage = heroImages[index];
+    if (!heroImage) return null; // Or a placeholder
+
+    return (
+        <motion.div
+            key={index}
+            className={`floating-image ${img.className}`}
+            style={img.style}
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 1, delay: 0.1 * (index + 1), ease: "easeOut" }}
+        >
+            <motion.div style={img.style}>
+                <Image
+                    src={heroImage.url}
+                    alt={img.alt}
+                    width={img.width}
+                    height={img.height}
+                    data-ai-hint={img.aiHint}
+                />
+            </motion.div>
+        </motion.div>
+    )
+  });
+
 
   return (
     <div ref={containerRef} className="home-hero-section overflow-hidden">
       <SiteBackground />
-      {!isMobile && images.map((img, index) => (
-        <motion.div
-          key={index}
-          className={`floating-image ${img.className}`}
-          style={img.style}
-          initial={{ opacity: 0, scale: 0.8 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 1, delay: 0.1 * (index + 1), ease: "easeOut" }}
-        >
-          <motion.div style={img.style}>
-            <Image
-              src={img.src}
-              alt={img.alt}
-              width={parseInt(img.src.split('/')[3].split('x')[0])}
-              height={parseInt(img.src.split('/')[3].split('x')[1].split('.')[0])}
-              data-ai-hint={img.aiHint}
-            />
-          </motion.div>
-        </motion.div>
-      ))}
+      {!isMobile && imageElements}
 
       <motion.div
         className="hero-content"
