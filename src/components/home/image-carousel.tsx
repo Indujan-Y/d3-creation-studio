@@ -1,24 +1,51 @@
+
 "use client";
 
 import { useState, useEffect } from 'react';
 import Image from 'next/image';
-import { carouselImages } from '@/lib/data';
-import { cn } from '@/lib/utils';
 import { motion } from 'framer-motion';
+import { getDatabase, ref, onValue } from 'firebase/database';
+import { app } from '@/lib/firebase';
+
+interface CarouselImage {
+    id: string;
+    url: string;
+    order: number;
+}
 
 export function ImageCarousel() {
+    const [images, setImages] = useState<CarouselImage[]>([]);
     const [isMounted, setIsMounted] = useState(false);
 
     useEffect(() => {
         setIsMounted(true);
-    }, []);
+        const db = getDatabase(app);
+        const carouselRef = ref(db, 'carousel');
 
-    if (!isMounted) {
+        const unsubscribe = onValue(carouselRef, (snapshot) => {
+            if (snapshot.exists()) {
+                const data = snapshot.val();
+                const imageList = Object.values(data) as Omit<CarouselImage, 'id'>[];
+                const fetchedImages = imageList.map((img, index) => ({
+                    ...img,
+                    id: Object.keys(data)[index],
+                }));
+                
+                fetchedImages.sort((a, b) => a.order - b.order);
+                setImages(fetchedImages);
+            }
+        });
+
+        return () => unsubscribe();
+    }, []);
+    
+    if (!isMounted || images.length === 0) {
+        // You can return a loading skeleton here if you want
         return null;
     }
 
     // Duplicate images for a seamless loop
-    const extendedImages = [...carouselImages, ...carouselImages];
+    const extendedImages = [...images, ...images];
 
     const sectionVariants = {
         hidden: { opacity: 0, y: 50 },
@@ -40,14 +67,14 @@ export function ImageCarousel() {
             <div className="scrolling-carousel-container">
                 <div className="scrolling-carousel-track left-to-right-1">
                     {extendedImages.map((image, i) => (
-                        <div className="scrolling-carousel-item" key={`top-${i}`}>
+                        <div className="scrolling-carousel-item" key={`top-${image.id}-${i}`}>
                             <Image 
-                                src={image.src} 
-                                alt={image.alt} 
+                                src={image.url} 
+                                alt={`Carousel image ${image.order + 1}`} 
                                 width={500}
                                 height={300}
                                 className="object-cover"
-                                data-ai-hint={image.aiHint} 
+                                data-ai-hint={'carousel image'} 
                             />
                         </div>
                     ))}
@@ -57,14 +84,14 @@ export function ImageCarousel() {
             <div className="scrolling-carousel-container">
                 <div className="scrolling-carousel-track right-to-left">
                      {extendedImages.map((image, i) => (
-                        <div className="scrolling-carousel-item" key={`middle-${i}`}>
+                        <div className="scrolling-carousel-item" key={`middle-${image.id}-${i}`}>
                             <Image 
-                                src={image.src} 
-                                alt={image.alt}
+                                src={image.url} 
+                                alt={`Carousel image ${image.order + 1}`}
                                 width={500}
                                 height={300}
                                 className="object-cover"
-                                data-ai-hint={image.aiHint}
+                                data-ai-hint={'carousel image'}
                              />
                         </div>
                     ))}
@@ -74,14 +101,14 @@ export function ImageCarousel() {
             <div className="scrolling-carousel-container">
                 <div className="scrolling-carousel-track left-to-right-2">
                      {extendedImages.map((image, i) => (
-                        <div className="scrolling-carousel-item" key={`bottom-${i}`}>
+                        <div className="scrolling-carousel-item" key={`bottom-${image.id}-${i}`}>
                            <Image 
-                                src={image.src} 
-                                alt={image.alt}
+                                src={image.url} 
+                                alt={`Carousel image ${image.order + 1}`}
                                 width={500}
                                 height={300}
                                 className="object-cover"
-                                data-ai-hint={image.aiHint}
+                                data-ai-hint={'carousel image'}
                             />
                         </div>
                     ))}
