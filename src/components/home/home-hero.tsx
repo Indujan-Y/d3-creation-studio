@@ -5,7 +5,6 @@ import { useRef, useState, useEffect } from 'react';
 import { motion, useScroll, useTransform, useSpring } from 'framer-motion';
 import Image from 'next/image';
 import { cn } from '@/lib/utils';
-import { SiteBackground } from '../layout/site-background';
 import { getDatabase, ref, onValue } from 'firebase/database';
 import { app } from '@/lib/firebase';
 
@@ -68,10 +67,18 @@ export function HomeHero() {
   const y6 = useTransform(scrollYProgress, [0, 1], [0, 180]);
   const y7 = useTransform(scrollYProgress, [0, 1], [0, -350]);
   const y8 = useTransform(scrollYProgress, [0, 1], [0, 250]);
+  const y9 = useTransform(scrollYProgress, [0, 1], [0, -200]);
+  const y10 = useTransform(scrollYProgress, [0, 1], [0, 400]);
+  const y11 = useTransform(scrollYProgress, [0, 1], [0, -150]);
+  const y12 = useTransform(scrollYProgress, [0, 1], [0, 320]);
+  const y13 = useTransform(scrollYProgress, [0, 1], [0, -280]);
+  const y14 = useTransform(scrollYProgress, [0, 1], [0, 200]);
+  const y15 = useTransform(scrollYProgress, [0, 1], [0, -300]);
+
   const logoY = useTransform(scrollYProgress, [0, 1], [0, 500]);
   const logoScale = useTransform(scrollYProgress, [0, 0.3], [1, 1.1]);
 
-  const springSettings = { stiffness: 80, damping: 25, restDelta: 0.001 };
+  const springSettings = { stiffness: 100, damping: 30, restDelta: 0.001 };
   const springY1 = useSpring(y1, springSettings);
   const springY2 = useSpring(y2, springSettings);
   const springY3 = useSpring(y3, springSettings);
@@ -80,6 +87,13 @@ export function HomeHero() {
   const springY6 = useSpring(y6, springSettings);
   const springY7 = useSpring(y7, springSettings);
   const springY8 = useSpring(y8, springSettings);
+  const springY9 = useSpring(y9, springSettings);
+  const springY10 = useSpring(y10, springSettings);
+  const springY11 = useSpring(y11, springSettings);
+  const springY12 = useSpring(y12, springSettings);
+  const springY13 = useSpring(y13, springSettings);
+  const springY14 = useSpring(y14, springSettings);
+  const springY15 = useSpring(y15, springSettings);
   const springLogoY = useSpring(logoY, { ...springSettings, stiffness: 100, damping: 30 });
 
   const images = [
@@ -91,11 +105,18 @@ export function HomeHero() {
     { style: { y: springY6 }, className: "floating-6", width: 200, height: 250, alt: "Video Production", aiHint: "video production" },
     { style: { y: springY7 }, className: "floating-7", width: 140, height: 180, alt: "Lighting Equipment", aiHint: "studio lighting" },
     { style: { y: springY8 }, className: "floating-8", width: 210, height: 260, alt: "Creative Portrait", aiHint: "creative portrait" },
+    { style: { y: springY9 }, className: "floating-9", width: 170, height: 220, alt: "Drone Shot", aiHint: "drone aerial" },
+    { style: { y: springY10 }, className: "floating-10", width: 230, height: 270, alt: "Fashion Shoot", aiHint: "fashion model" },
+    { style: { y: springY11 }, className: "floating-11", width: 150, height: 190, alt: "Product Photography", aiHint: "product shot" },
+    { style: { y: springY12 }, className: "floating-12", width: 200, height: 240, alt: "Event Photography", aiHint: "event concert" },
+    { style: { y: springY13 }, className: "floating-13", width: 180, height: 230, alt: "Nature Photography", aiHint: "nature forest" },
+    { style: { y: springY14 }, className: "floating-14", width: 210, height: 250, alt: "Architectural Photo", aiHint: "modern architecture" },
+    { style: { y: springY15 }, className: "floating-15", width: 160, height: 210, alt: "Food Photography", aiHint: "gourmet food" },
   ];
 
   const imageElements = images.map((img, index) => {
-    const heroImage = heroImages[index];
-    if (!heroImage) return null; // Or a placeholder
+    const heroImage = heroImages[index % heroImages.length]; // Use modulo to safely repeat images if not enough
+    if (!heroImage) return null;
 
     return (
         <motion.div
@@ -122,9 +143,7 @@ export function HomeHero() {
 
   return (
     <div ref={containerRef} className="home-hero-section overflow-hidden">
-      <SiteBackground />
       {!isMobile && imageElements}
-
       <motion.div
         className="hero-content"
         style={{ scale: logoScale, y: springLogoY }}
