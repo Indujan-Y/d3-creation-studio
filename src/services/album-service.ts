@@ -3,7 +3,7 @@
 
 import { getDatabase, ref, get } from 'firebase/database';
 import { app } from '@/lib/firebase';
-import {-l_} from 'lodash';
+import _ from 'lodash';
 
 export interface AlbumImage {
   url: string;
