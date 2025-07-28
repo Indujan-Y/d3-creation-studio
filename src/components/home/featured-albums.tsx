@@ -34,7 +34,7 @@ export function FeaturedAlbums() {
         visible: {
             opacity: 1,
             y: 0,
-            transition: { duration: 0.8, ease: "power4.out" }
+            transition: { duration: 0.8, ease: "easeOut" }
         }
     }
 
@@ -60,7 +60,7 @@ export function FeaturedAlbums() {
             scale: 1,
             transition: {
                 duration: 0.7,
-                ease: "power4.out"
+                ease: "easeOut"
             }
         }
     };
