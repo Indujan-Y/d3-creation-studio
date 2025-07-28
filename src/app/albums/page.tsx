@@ -38,7 +38,6 @@ export default async function AlbumsPage() {
                         className="object-cover transition-transform duration-500 group-hover:scale-105"
                         data-ai-hint={album.aiHint}
                       />
-                       <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent" />
                     </div>
                     <div className="p-6 bg-card">
                       <h3 className="text-xl font-bold font-headline text-primary">{album.title}</h3>
