@@ -1,16 +1,19 @@
+
 import { notFound } from 'next/navigation';
 import Image from 'next/image';
 import { HeroSection } from '@/components/shared/hero-section';
-import { albums } from '@/lib/data';
+import { getAllAlbums, getAlbumById } from '@/services/album-service';
 
 export async function generateStaticParams() {
+  const albums = await getAllAlbums();
   return albums.map((album) => ({
-    slug: album.slug,
+    slug: album.id,
   }));
 }
 
-export default function AlbumDetailPage({ params }: { params: { slug: string } }) {
-  const album = albums.find((a) => a.slug === params.slug);
+export default async function AlbumDetailPage({ params }: { params: { slug: string } }) {
+  // The 'slug' is now the album ID
+  const album = await getAlbumById(params.slug);
 
   if (!album) {
     notFound();

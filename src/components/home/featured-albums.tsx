@@ -1,13 +1,25 @@
+
 "use client";
 
-import React, { useRef } from 'react';
+import React, { useRef, useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import { Eye, Camera, Calendar, ArrowRight } from 'lucide-react';
 import Link from 'next/link';
-import { albums } from '@/lib/data';
+import { getAllAlbums, type Album } from '@/services/album-service';
 
 export function FeaturedAlbums() {
     const containerRef = useRef(null);
+    const [albums, setAlbums] = useState<Album[]>([]);
+
+    useEffect(() => {
+        async function fetchAlbums() {
+            const fetchedAlbums = await getAllAlbums();
+            // Sort by date descending and take the latest 6
+            const sortedAlbums = fetchedAlbums.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
+            setAlbums(sortedAlbums.slice(0, 6));
+        }
+        fetchAlbums();
+    }, []);
 
     const sectionVariants = {
         hidden: { opacity: 0 },
@@ -22,7 +34,7 @@ export function FeaturedAlbums() {
         visible: {
             opacity: 1,
             y: 0,
-            transition: { duration: 0.8, ease: [0.25, 1, 0.5, 1] }
+            transition: { duration: 0.8, ease: "power4.out" }
         }
     }
 
@@ -48,7 +60,7 @@ export function FeaturedAlbums() {
             scale: 1,
             transition: {
                 duration: 0.7,
-                ease: [0.25, 1, 0.5, 1]
+                ease: "power4.out"
             }
         }
     };
@@ -85,9 +97,9 @@ export function FeaturedAlbums() {
                     className="albums-grid"
                     variants={gridVariants}
                 >
-                    {albums.slice(0, 6).map((album) => (
+                    {albums.map((album) => (
                         <motion.div
-                            key={album.slug}
+                            key={album.id}
                             variants={itemVariants}
                             className="album-card"
                             whileHover={{
@@ -95,7 +107,7 @@ export function FeaturedAlbums() {
                                 transition: { duration: 0.3, ease: "easeOut" }
                             }}
                         >
-                          <Link href={`/albums/${album.slug}`}>
+                          <Link href={`/albums/${album.id}`}>
                             <div className="album-image-container">
                                 <motion.img
                                     src={album.coverUrl}
@@ -139,11 +151,11 @@ export function FeaturedAlbums() {
                                 <div className="album-meta">
                                     <div className="meta-item">
                                         <Camera className="meta-icon" />
-                                        <span>{album.images.length * 5}+ Photos</span>
+                                        <span>{album.images.length}+ Photos</span>
                                     </div>
                                     <div className="meta-item">
                                         <Calendar className="meta-icon" />
-                                        <span>2024</span>
+                                        <span>{new Date(album.date).getFullYear()}</span>
                                     </div>
                                 </div>
                             </div>

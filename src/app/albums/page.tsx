@@ -1,10 +1,13 @@
+
 import Image from 'next/image';
 import Link from 'next/link';
 import { HeroSection } from '@/components/shared/hero-section';
 import { Card, CardContent } from '@/components/ui/card';
-import { albums } from '@/lib/data';
+import { getAllAlbums } from '@/services/album-service';
 
-export default function AlbumsPage() {
+export default async function AlbumsPage() {
+  const albums = await getAllAlbums();
+
   return (
     <>
       <HeroSection
@@ -24,8 +27,8 @@ export default function AlbumsPage() {
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {albums.map((album) => (
-              <Card key={album.slug} className="overflow-hidden group hover:shadow-xl transition-shadow duration-300">
-                <Link href={`/albums/${album.slug}`}>
+              <Card key={album.id} className="overflow-hidden group hover:shadow-xl transition-shadow duration-300">
+                <Link href={`/albums/${album.id}`}>
                   <CardContent className="p-0">
                     <div className="relative aspect-video">
                       <Image

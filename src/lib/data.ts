@@ -1,3 +1,4 @@
+
 export const navLinks = [
   { href: '/', label: 'Home' },
   { href: '/about', label: 'About' },
@@ -45,99 +46,6 @@ export const services = [
   },
 ];
 
-export const albums = [
-  {
-    slug: 'serene-landscapes',
-    title: 'Serene Landscapes',
-    category: 'Nature',
-    description: 'A collection of breathtaking natural vistas from around the world.',
-    coverUrl: 'https://placehold.co/600x400.png',
-    aiHint: 'landscape mountains',
-    images: [
-      { url: 'https://placehold.co/800x600.png', aiHint: 'mountain lake' },
-      { url: 'https://placehold.co/800x600.png', aiHint: 'forest sunrise' },
-      { url: 'https://placehold.co/800x600.png', aiHint: 'desert dunes' },
-      { url: 'https://placehold.co/800x600.png', aiHint: 'ocean sunset' },
-    ],
-    gradient: "gradient-emerald"
-  },
-  {
-    slug: 'urban-elegance',
-    title: 'Urban Elegance',
-    category: 'Architecture',
-    description: 'Capturing the vibrant energy and architectural beauty of city life.',
-    coverUrl: 'https://placehold.co/600x400.png',
-    aiHint: 'city skyline',
-    images: [
-      { url: 'https://placehold.co/800x600.png', aiHint: 'city street' },
-      { url: 'https://placehold.co/800x600.png', aiHint: 'architecture building' },
-      { url: 'https://placehold.co/800x600.png', aiHint: 'night city' },
-      { url: 'https://placehold.co/800x600.png', aiHint: 'subway station' },
-    ],
-    gradient: "gradient-slate"
-  },
-  {
-    slug: 'moments-in-time',
-    title: 'Moments in Time',
-    category: 'Street',
-    description: 'A candid look at human connection and everyday life.',
-    coverUrl: 'https://placehold.co/600x400.png',
-    aiHint: 'people laughing',
-    images: [
-      { url: 'https://placehold.co/800x600.png', aiHint: 'family dinner' },
-      { url: 'https://placehold.co/800x600.png', aiHint: 'friends laughing' },
-      { url: 'https://placehold.co/800x600.png', aiHint: 'old couple' },
-      { url: 'https://placehold.co/800x600.png', aiHint: 'child playing' },
-    ],
-    gradient: "gradient-amber"
-  },
-  {
-    slug: 'ethereal-portraits',
-    title: 'Ethereal Portraits',
-    category: 'Portrait',
-    description: 'Creative and artistic portraits that tell a story.',
-    coverUrl: 'https://placehold.co/600x400.png',
-    aiHint: 'woman portrait',
-    images: [
-      { url: 'https://placehold.co/800x600.png', aiHint: 'fantasy portrait' },
-      { url: 'https://placehold.co/800x600.png', aiHint: 'artistic model' },
-      { url: 'https://placehold.co/800x600.png', aiHint: 'man silhouette' },
-      { url: 'https://placehold.co/800x600.png', aiHint: 'dramatic lighting' },
-    ],
-    gradient: "gradient-purple"
-  },
-  {
-    slug: 'wedding-bliss',
-    title: 'Wedding Bliss',
-    category: 'Wedding',
-    description: 'Timeless memories of love and celebration.',
-    coverUrl: 'https://placehold.co/600x400.png',
-    aiHint: 'wedding couple',
-    images: [
-      { url: 'https://placehold.co/800x600.png', aiHint: 'wedding rings' },
-      { url: 'https://placehold.co/800x600.png', aiHint: 'bride groom' },
-      { url: 'https://placehold.co/800x600.png', aiHint: 'wedding cake' },
-      { url: 'https://placehold.co/800x600.png', aiHint: 'first dance' },
-    ],
-    gradient: "gradient-rose"
-  },
-  {
-    slug: 'fashion-forward',
-    title: 'Fashion Forward',
-    category: 'Fashion',
-    description: 'Contemporary fashion and style photography.',
-    coverUrl: 'https://placehold.co/600x400.png',
-    aiHint: 'fashion model',
-    images: [
-      { url: 'https://placehold.co/800x600.png', aiHint: 'catwalk fashion' },
-      { url: 'https://placehold.co/800x600.png', aiHint: 'studio fashion' },
-      { url: 'https://placehold.co/800x600.png', aiHint: 'urban fashion' },
-      { url: 'https://placehold.co/800x600.png', aiHint: 'luxury clothing' },
-    ],
-    gradient: "gradient-indigo"
-  },
-];
-
 export const testimonials = [
   {
     quote: "d3 creation studio exceeded all our expectations. The photos are absolutely stunning, and they managed to capture the essence of our wedding day perfectly. Highly recommended!",
@@ -160,14 +68,6 @@ export const testimonials = [
     imageUrl: 'https://placehold.co/800x400.png',
     aiHint: 'smiling man'
   }
-];
-
-export const carouselImages = [
-  { src: 'https://placehold.co/1200x600.png', alt: 'A stunning landscape photo.', aiHint: 'dramatic landscape' },
-  { src: 'https://placehold.co/1200x600.png', alt: 'A beautiful wedding moment.', aiHint: 'wedding ceremony' },
-  { src: 'https://placehold.co/1200x600.png', alt: 'A cinematic shot from an event.', aiHint: 'event videography' },
-  { src: 'https://placehold.co/1200x600.png', alt: 'A creative portrait.', aiHint: 'creative portrait' },
-  { src: 'https://placehold.co/1200x600.png', alt: 'A vibrant city-scape.', aiHint: 'city night' },
 ];
 
 export const aboutPreviewBg = {
