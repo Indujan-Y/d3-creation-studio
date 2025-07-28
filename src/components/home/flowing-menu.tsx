@@ -1,10 +1,10 @@
 
 "use client";
 
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import { gsap } from "gsap";
-import { services } from "@/lib/data";
+import { getAllCategories, type Category } from "@/services/category-service";
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
 import { motion } from 'framer-motion';
@@ -15,16 +15,21 @@ interface MenuItemProps {
   image: string;
 }
 
-interface FlowingMenuProps {
-  items?: MenuItemProps[];
-}
+export const FlowingMenu: React.FC = () => {
+  const [menuItems, setMenuItems] = useState<MenuItemProps[]>([]);
 
-export const FlowingMenu: React.FC<FlowingMenuProps> = () => {
-  const menuItems = services.map(service => ({
-    link: `/services/${service.slug}`,
-    text: service.title,
-    image: service.imageUrl
-  }));
+  useEffect(() => {
+    async function fetchCategories() {
+      const categories = await getAllCategories();
+      const mappedItems = categories.slice(0, 4).map(service => ({
+        link: `/services/${service.id}`,
+        text: service.title,
+        image: service.thumbnail
+      }));
+      setMenuItems(mappedItems);
+    }
+    fetchCategories();
+  }, []);
 
   const sectionVariants = {
       hidden: { opacity: 0 },

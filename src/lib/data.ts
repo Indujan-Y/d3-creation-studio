@@ -7,45 +7,6 @@ export const navLinks = [
   { href: '/socials', label: 'Socials' },
 ];
 
-export const services = [
-  {
-    slug: 'wedding-photography',
-    title: 'Wedding Photography',
-    description: 'Capturing the magic of your special day with timeless photos.',
-    details: 'Our wedding photography packages are tailored to your needs, covering everything from the ceremony to the reception. We focus on candid moments and beautiful portraits to tell the story of your love.',
-    icon: 'Heart',
-    imageUrl: 'https://placehold.co/600x400.png',
-    aiHint: 'wedding couple'
-  },
-  {
-    slug: 'portrait-sessions',
-    title: 'Portrait Sessions',
-    description: 'Professional portraits for individuals, families, and professionals.',
-    details: 'Whether you need a new headshot, a family portrait, or creative photos for your portfolio, our portrait sessions are designed to capture your personality and essence in a stunning way.',
-    icon: 'User',
-    imageUrl: 'https://placehold.co/600x400.png',
-    aiHint: 'portrait woman'
-  },
-  {
-    slug: 'event-videography',
-    title: 'Event Videography',
-    description: 'Cinematic video coverage for corporate events, parties, and more.',
-    details: 'We produce high-quality, cinematic videos that capture the energy and key moments of your event. From conferences to private parties, we deliver a final product that you can share and cherish.',
-    icon: 'Video',
-    imageUrl: 'https://placehold.co/600x400.png',
-    aiHint: 'event concert'
-  },
-  {
-    slug: 'commercial-shoots',
-    title: 'Commercial Shoots',
-    description: 'High-quality visuals for your brand, products, and marketing campaigns.',
-    details: 'Our team works with you to create compelling visual content for your business. We handle product photography, brand stories, and advertising campaigns with a creative and professional approach.',
-    icon: 'Camera',
-    imageUrl: 'https://placehold.co/600x400.png',
-    aiHint: 'product shoot'
-  },
-];
-
 export const testimonials = [
   {
     quote: "d3 creation studio exceeded all our expectations. The photos are absolutely stunning, and they managed to capture the essence of our wedding day perfectly. Highly recommended!",

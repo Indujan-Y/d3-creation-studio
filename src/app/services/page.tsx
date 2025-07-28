@@ -2,11 +2,13 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { HeroSection } from '@/components/shared/hero-section';
 import { Card, CardContent } from '@/components/ui/card';
-import { services } from '@/lib/data';
+import { getAllCategories } from '@/services/category-service';
 import { Button } from '@/components/ui/button';
 import { ArrowRight } from 'lucide-react';
 
-export default function ServicesPage() {
+export default async function ServicesPage() {
+  const services = await getAllCategories();
+
   return (
     <>
       <HeroSection
@@ -25,23 +27,23 @@ export default function ServicesPage() {
             </p>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12">
-            {services.map((service, index) => (
-              <Card key={service.slug} className="group overflow-hidden flex flex-col">
+            {services.map((service) => (
+              <Card key={service.id} className="group overflow-hidden flex flex-col">
                 <div className="relative w-full h-48">
                   <Image
-                    src={service.imageUrl}
+                    src={service.thumbnail}
                     alt={service.title}
                     fill
                     className="object-cover transition-transform duration-500 group-hover:scale-105"
-                    data-ai-hint={service.aiHint}
+                    data-ai-hint="service offering"
                   />
                 </div>
                 <div className="p-6 flex flex-col flex-grow">
                   <h3 className="text-2xl font-bold font-headline text-primary mb-2">{service.title}</h3>
-                  <p className="text-muted-foreground font-body flex-grow">{service.details}</p>
+                  <p className="text-muted-foreground font-body flex-grow">{service.description}</p>
                   <div className="mt-6">
                     <Button asChild variant="link" className="p-0 h-auto text-accent">
-                      <Link href={`/services/${service.slug}`}>
+                      <Link href={`/services/${service.id}`}>
                         Find Out More <ArrowRight className="ml-2 h-4 w-4" />
                       </Link>
                     </Button>
