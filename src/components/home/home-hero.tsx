@@ -27,7 +27,8 @@ export function HomeHero() {
             const data = snapshot.val();
             const imageList = Object.keys(data).map(key => ({
                 id: key,
-                url: data[key].url
+                // Request a higher resolution image from Google Drive
+                url: `${data[key].url}&sz=w1000`
             }));
             setHeroImages(imageList);
         }

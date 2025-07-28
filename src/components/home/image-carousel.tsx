@@ -29,6 +29,8 @@ export function ImageCarousel() {
                 const fetchedImages = imageList.map((img, index) => ({
                     ...img,
                     id: Object.keys(data)[index],
+                    // Request a higher resolution image from Google Drive
+                    url: `${img.url}&sz=w1920` 
                 }));
                 
                 fetchedImages.sort((a, b) => a.order - b.order);

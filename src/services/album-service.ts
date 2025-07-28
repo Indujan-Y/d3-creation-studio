@@ -35,7 +35,8 @@ const gradients = [
 // Helper function to transform Firebase data into the Album structure
 function transformAlbum(fbAlbum: any, id: string, index: number): Album {
     const images = (fbAlbum.photos || []).map((photoUrl: string) => ({
-        url: photoUrl,
+        // Request a higher resolution image from Google Drive
+        url: `${photoUrl}&sz=w1920`,
         aiHint: 'album photo' 
     }));
 
@@ -44,7 +45,8 @@ function transformAlbum(fbAlbum: any, id: string, index: number): Album {
         slug: _.kebabCase(fbAlbum.title),
         title: fbAlbum.title || 'Untitled Album',
         description: fbAlbum.description || 'No description available.',
-        coverUrl: fbAlbum.thumbnail,
+        // Request a higher resolution image from Google Drive
+        coverUrl: `${fbAlbum.thumbnail}&sz=w1000`,
         images: images,
         date: fbAlbum.date,
         // Assign default/fallback values for fields not in Firebase
